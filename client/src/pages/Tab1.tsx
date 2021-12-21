@@ -12,9 +12,9 @@ import "./Tab1.css";
 
 const Tab1: React.FC = () => {
   // access the Firestore library
-  const burritoRef = doc(useFirestore(), "users", "As8FrfQrJjBJJiO6u6aX");
+  const userRef = doc(useFirestore(), "users", "As8FrfQrJjBJJiO6u6aX");
   // subscribe to a document for realtime updates. just one line!
-  const { status, data } = useFirestoreDocData(burritoRef);
+  const { status, data } = useFirestoreDocData(userRef);
 
   console.log(data, status);
 
