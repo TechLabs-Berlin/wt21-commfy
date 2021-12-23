@@ -7,7 +7,7 @@ import Commfy_RBM as rbm
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
-outfits = {"sunny_hot":1,"sunny_casual":1,"sunny_cold":1,"rainy_warm":1,"rainy_cold":1,"snowy":1,"windy_warm":1,"windy_cold":1}
+outfits = {"sunglasses":(0,1),"neck":(1,2,3)}
 
 module_dir = os.path.abspath(os.path.dirname(__file__))
 
@@ -27,17 +27,22 @@ def return_all():
 #give out random input
 @app.route("/api/random_input", methods=["GET"])
 def random_input():
-    return jsonify(rbm.input_generator())
+    return jsonify(rbm.generate_multilist(6))
 #give out random in and the right output
 @app.route("/api/random_in_output", methods=["GET"])
 def random_in_output():
-    a= rbm.input_generator()
-    b= rbm.get_clothing_output_rbm(a)
+    a= rbm.generate_multilist(6)
+    b= rbm.get_clothing_multilist(a)
     js=[a,b]
     return  jsonify(js)
 #give out random poutput
 @app.route("/api/random_output", methods=["GET"])
 def random_output():
-    a= rbm.input_generator()
-    b= rbm.get_clothing_output_rbm(a)
+    a= rbm.generate_multilist(6)
+    b= rbm.get_clothing_multilist(a)
     return  jsonify(b)
+
+@app.route("/api/outfits/filter", methods=["GET"])
+def filter_outfits():
+    data= request.get_json()
+    return jsonify(rbm.get_clothing_multilist(data))
