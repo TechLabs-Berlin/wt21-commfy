@@ -19,7 +19,6 @@ const Tab1: React.FC = () => {
   console.log(data, status);
 
   return (
-
     <IonPage>
       <IonHeader>
         <IonToolbar>
@@ -34,7 +33,6 @@ const Tab1: React.FC = () => {
         </IonHeader>
         <ExploreContainer name="Tab 1 page" />
       </IonContent>
-
     </IonPage>
   );
 };
