@@ -5,8 +5,8 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import ExploreContainer from "../components/ExploreContainer";
-import { useUser } from "../utils/firebase";
+import ExploreContainer from "components/ExploreContainer";
+import { useUser } from "utils/firebase";
 import "./Tab1.css";
 
 const Tab1: React.FC = () => {

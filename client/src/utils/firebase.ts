@@ -1,12 +1,7 @@
 import { doc } from "firebase/firestore";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
-import {
-  useFirestore,
-  useFirestoreDocData,
-  useFirebaseApp,
-  useAuth,
-} from "reactfire";
+import { useFirestore, useFirestoreDocData, useAuth } from "reactfire";
 
 export enum FirebaseCollections {
   users = "users",

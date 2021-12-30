@@ -14,7 +14,7 @@ import React from "react";
 import { IonGrid, IonRow, IonCol } from "@ionic/react";
 import { personCircle } from "ionicons/icons";
 import { Formik, FormikConfig } from "formik";
-import { useAuthentication } from "../../utils/firebase";
+import { useAuthentication } from "utils/firebase";
 
 const AuthLogin: React.FC = () => {
   const { signIn } = useAuthentication();

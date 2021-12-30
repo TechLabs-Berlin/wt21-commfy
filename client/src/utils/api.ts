@@ -1,5 +1,5 @@
 import { QueryClient, useQuery } from "react-query";
-import { config } from "./config";
+import { config } from "utils/config";
 
 export const apiClient = new QueryClient();
 
