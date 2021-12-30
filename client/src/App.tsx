@@ -1,4 +1,4 @@
-import { Redirect, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import {
   IonApp,
   IonIcon,
@@ -10,10 +10,9 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { ellipse, square, triangle } from "ionicons/icons";
+import { ellipse, triangle } from "ionicons/icons";
 import Tab1 from "./pages/Tab1";
 import Tab2 from "./pages/Tab2";
-import Tab3 from "./pages/Tab3";
 import { FirebaseAppProvider } from "reactfire";
 
 /* Core CSS required for Ionic components to work properly */
@@ -36,59 +35,57 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import { FirestoreWrapper } from "./components/FirestoreWrapper";
 import { AuthWrapper } from "./components/AuthWrapper";
-import { AuthCheckWrapper } from "./components/AuthCheckWrapper";
 import AuthLogin from "./pages/AuthLogin/AuthLogin";
+import { QueryClientProvider } from "react-query";
+import { apiClient } from "./utils/api";
+import { config } from "./utils/config";
+import { routes } from "./utils/routes";
 
 setupIonicReact();
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDCqO6LABuFGFH73SlY_11d4X9PCi1Xy9k",
-  authDomain: "commfy-dev.firebaseapp.com",
-  projectId: "commfy-dev",
-  storageBucket: "commfy-dev.appspot.com",
-  messagingSenderId: "640480368018",
-  appId: "1:640480368018:web:afb596db7728c69e421d4b",
-  measurementId: "G-EC9HZG4W8M",
-};
 
 const App: React.FC = () => {
   return (
     <IonApp>
-      <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+      <FirebaseAppProvider firebaseConfig={config.firebase.config}>
         <AuthWrapper>
           <FirestoreWrapper>
-            <IonReactRouter>
-              <IonTabs>
-                <IonRouterOutlet>
-                  <Route exact path="/tab1">
-                    <Tab1 />
-                  </Route>
-                  <Route exact path="/tab2">
-                    <Tab2 />
-                  </Route>
-                  <Route path="/tab3">
-                    <AuthLogin />
-                  </Route>
-                  <Route exact path="/">
-                    <Redirect to="/tab1" />
-                  </Route>
-                </IonRouterOutlet>
-                <IonTabBar slot="bottom">
-                  <IonTabButton tab="tab1" href="/tab1">
-                    <IonIcon icon={triangle} />
-                    <IonLabel>Tab 1</IonLabel>
-                  </IonTabButton>
-                  <IonTabButton tab="tab2" href="/tab2">
-                    <IonIcon icon={ellipse} />
-                    <IonLabel>Tab 2</IonLabel>
-                  </IonTabButton>
-                  <IonTabButton tab="tab3" href="/tab3">
-                    <IonIcon icon={square} />
-                    <IonLabel>Tab 3</IonLabel>
-                  </IonTabButton>
-                </IonTabBar>
-              </IonTabs>
-            </IonReactRouter>
+            <QueryClientProvider client={apiClient}>
+              <IonReactRouter>
+                <IonTabs>
+                  {/* Routes Mapping */}
+                  <IonRouterOutlet>
+                    <Route exact path={`/${routes.tab.firebase}`}>
+                      <Tab1 />
+                    </Route>
+                    <Route exact path={`/${routes.tab.api}`}>
+                      <Tab2 />
+                    </Route>
+                    {/* Auth */}
+                    <Route exact path={`/${routes.auth.login}`}>
+                      <AuthLogin />
+                    </Route>
+                  </IonRouterOutlet>
+                  {/* Tabs */}
+                  <IonTabBar slot="bottom">
+                    <IonTabButton
+                      tab={routes.tab.firebase}
+                      href={`/${routes.tab.firebase}`}
+                    >
+                      <IonIcon icon={triangle} />
+                      <IonLabel>Firebase</IonLabel>
+                    </IonTabButton>
+
+                    <IonTabButton
+                      tab={routes.tab.api}
+                      href={`/${routes.tab.api}`}
+                    >
+                      <IonIcon icon={ellipse} />
+                      <IonLabel>API</IonLabel>
+                    </IonTabButton>
+                  </IonTabBar>
+                </IonTabs>
+              </IonReactRouter>
+            </QueryClientProvider>
           </FirestoreWrapper>
         </AuthWrapper>
       </FirebaseAppProvider>

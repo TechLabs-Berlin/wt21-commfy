@@ -5,18 +5,13 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { doc } from "firebase/firestore";
-import { useFirestore, useFirestoreDocData } from "reactfire";
 import ExploreContainer from "../components/ExploreContainer";
+import { useUser } from "../utils/firebase";
 import "./Tab1.css";
 
 const Tab1: React.FC = () => {
-  // access the Firestore library
-  const userRef = doc(useFirestore(), "users", "As8FrfQrJjBJJiO6u6aX");
-  // subscribe to a document for realtime updates. just one line!
-  const { status, data } = useFirestoreDocData(userRef);
-
-  console.log(data, status);
+  const { data, loading } = useUser("As8FrfQrJjBJJiO6u6aX");
+  console.log(data, loading);
 
   return (
     <IonPage>
