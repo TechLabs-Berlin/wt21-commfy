@@ -37,6 +37,7 @@ import "./theme/variables.css";
 import { FirestoreWrapper } from "./components/FirestoreWrapper";
 import { AuthWrapper } from "./components/AuthWrapper";
 import { AuthCheckWrapper } from "./components/AuthCheckWrapper";
+import AuthLogin from "./pages/AuthLogin/AuthLogin";
 
 setupIonicReact();
 
@@ -66,7 +67,7 @@ const App: React.FC = () => {
                     <Tab2 />
                   </Route>
                   <Route path="/tab3">
-                    <Tab3 />
+                    <AuthLogin />
                   </Route>
                   <Route exact path="/">
                     <Redirect to="/tab1" />
