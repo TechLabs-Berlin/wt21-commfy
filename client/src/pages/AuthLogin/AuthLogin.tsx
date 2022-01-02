@@ -15,6 +15,7 @@ import { IonGrid, IonRow, IonCol } from "@ionic/react";
 import { personCircle } from "ionicons/icons";
 import { Formik, FormikConfig } from "formik";
 import { useAuthentication } from "utils/firebase";
+import { routes } from "utils/routes";
 
 const AuthLogin: React.FC = () => {
   const { signIn } = useAuthentication();
@@ -108,7 +109,7 @@ const AuthLogin: React.FC = () => {
                       Login
                     </IonButton>
                     <p style={{ fontSize: "medium" }}>
-                      Don't have an account? <a href="#">Sign up!</a>
+                      Don't have an account? <a href={`/${routes.auth.register}`}>Sign up!</a>
                     </p>
                   </IonCol>
                 </IonRow>

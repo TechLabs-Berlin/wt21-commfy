@@ -1,5 +1,5 @@
 import { doc } from "firebase/firestore";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword,} from "firebase/auth";
 
 import { useFirestore, useFirestoreDocData, useAuth } from "reactfire";
 
@@ -19,8 +19,13 @@ export const useAuthentication = () => {
 
   const signIn = async (email: string, password: string) => {
     const user = await signInWithEmailAndPassword(auth, email, password);
-    return user.user;
+    return user.user;    
   };
 
-  return { signIn, signOut: auth.signOut };
+  const signUp = async(email: string, password: string)=>{
+    const newUser = await createUserWithEmailAndPassword(auth, email, password)
+    return newUser.user
+  };
+
+  return { signIn, signOut: auth.signOut, signUp };
 };

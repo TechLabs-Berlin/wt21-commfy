@@ -40,13 +40,15 @@ import { QueryClientProvider } from "react-query";
 import { apiClient } from "./utils/api";
 import { config } from "./utils/config";
 import { routes } from "./utils/routes";
+import AuthRegister from "pages/AuthRegister/AuthRegister";
+
 
 setupIonicReact();
 
 const App: React.FC = () => {
   return (
     <IonApp>
-      <FirebaseAppProvider firebaseConfig={config.firebase.config}>
+      <FirebaseAppProvider firebaseConfig={config.firebase.config}>        
         <AuthWrapper>
           <FirestoreWrapper>
             <QueryClientProvider client={apiClient}>
@@ -63,6 +65,9 @@ const App: React.FC = () => {
                     {/* Auth */}
                     <Route exact path={`/${routes.auth.login}`}>
                       <AuthLogin />
+                    </Route>
+                    <Route exact path={`/${routes.auth.register}`}>
+                      <AuthRegister />
                     </Route>
                   </IonRouterOutlet>
                   {/* Tabs */}
@@ -87,7 +92,7 @@ const App: React.FC = () => {
               </IonReactRouter>
             </QueryClientProvider>
           </FirestoreWrapper>
-        </AuthWrapper>
+         </AuthWrapper>      
       </FirebaseAppProvider>
     </IonApp>
   );
