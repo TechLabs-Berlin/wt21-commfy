@@ -75,7 +75,7 @@ print(json_inp)
 # %%
 def weather(df):
     # Enter your API key here
-    api_key = "76869be57660cb1d7d65bc8060ca9290"
+    api_key = "dummy"
     # base_url variable to store url
     base_url = "http://api.openweathermap.org/data/2.5/weather?"
     future_url="https://api.openweathermap.org/data/2.5/forecast?"
