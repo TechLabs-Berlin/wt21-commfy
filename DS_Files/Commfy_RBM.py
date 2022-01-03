@@ -26,7 +26,7 @@ def input_generator():
     location= location_list[randint(0,5)]
     time=datetime.now(pytz.timezone('Europe/Berlin')).replace(tzinfo=None)##no timezone for better work through
     time=time.replace(hour=randint(time.hour,23))
-    weather=randint(1, 4)
+    #weather=randint(1, 4)
     heaviness_of_trip=randint(1,3)
     if heaviness_of_trip==1: heaviness_of_trip="easy"
     if heaviness_of_trip==2: heaviness_of_trip="normal"
@@ -47,7 +47,7 @@ def input_generator():
 
 # %%
 #test input generator
-print(input_generator().to_json())
+#print(input_generator().to_json())
 
 # %%
 #autogenerate DataFrame with multiple input
@@ -59,12 +59,12 @@ def generate_multi_input(a):
 
 # %%
 #test data with json input
-a=generate_multi_input(4)
-print(a)
-a=generate_multi_input(4).to_json(orient="index",date_format='iso')
-print(a)
-json_inp= pd.read_json(a, orient='index',convert_dates=['time'])   
-print(json_inp)
+#a=generate_multi_input(4)
+#print(a)
+#a=generate_multi_input(4).to_json(orient="index",date_format='iso')
+#print(a)
+#json_inp= pd.read_json(a, orient='index',convert_dates=['time'])   
+#print(json_inp)
 
 # %% [markdown]
 # <hr style="border:2px solid gray"> </hr>   
@@ -75,7 +75,7 @@ print(json_inp)
 # %%
 def weather(df):
     # Enter your API key here
-    api_key = "dummy"
+    api_key = "Dummy"
     # base_url variable to store url
     base_url = "http://api.openweathermap.org/data/2.5/weather?"
     future_url="https://api.openweathermap.org/data/2.5/forecast?"
@@ -116,12 +116,12 @@ def weather(df):
 # %%
 #weather test
 #two dataframes (one with just 1 input, and one with 6 input Trips)
-test=weather(input_generator())
-len(test.index)
-test.to_json()
-print(test)
-test2=weather(generate_multi_input(20))
-test2.head()
+#test=weather(input_generator())
+#len(test.index)
+#test.to_json()
+#print(test)
+#test2=weather(generate_multi_input(20))
+#test2.head()
 
 # %% [markdown]
 # <hr style="border:2px solid gray"> </hr>   
@@ -161,7 +161,7 @@ def add_dummy(df):
     return df
 
 # %%
-##todo implement the logic of the decision tree
+# todo implement the logic of the decision tree
 ##headwear decisiontree
 def headwear(df):
     return df
@@ -279,7 +279,7 @@ def get_clothing_output_rbm(df):
 
 # %%
 #test the model
-get_clothing_output_rbm(test2)
+#get_clothing_output_rbm(test2)
 
 # %% [markdown]
 # <hr style="border:2px solid gray"> </hr>  
@@ -323,26 +323,39 @@ def get_clothing(df):
 
 # %%
 #for testing with json input
-weather(json_inp)
-add_dummy(json_inp)
+#weather(json_inp)
+#add_dummy(json_inp)
+def recommendation_json(js):
+    json_inp= pd.read_json(js, orient='index',convert_dates=['time'])  
+    rec_dfs= get_clothing(add_dummy(weather(json_inp)))
+    rec_js= rec_dfs[0].to_json(orient="records")
+    rec_js= rec_js+rec_dfs[1].to_json(orient="columns")
+    rec_js= rec_js+rec_dfs[2].to_json(orient="index")
+    return rec_js
 
+def recommendation_df(df):
+    rec_dfs= get_clothing(add_dummy(weather(df)))
+    rec_js= rec_dfs[0].to_json(orient="records")
+    rec_js= rec_js+rec_dfs[1].to_json(orient="columns")
+    rec_js= rec_js+rec_dfs[2].to_json(orient="index")
+    return rec_js
 # %%
 #for testing generated input
-add_dummy(test2)
+#add_dummy(test2)
 
 # %%
-print(get_clothing(test2))
+#print(get_clothing(test2))
 
-print(get_clothing(test2)[0].to_json(orient="records"))
-print(get_clothing(test2)[1].to_json(orient="columns"))
-print(get_clothing(test2)[2].to_json(orient="index"))
+#print(get_clothing(test2)[0].to_json(orient="records"))
+#print(get_clothing(test2)[1].to_json(orient="columns"))
+#print(get_clothing(test2)[2].to_json(orient="index"))
 
 # res = clothing_per_trip.to_json(orient="records")
 #  parsed = json.loads(res)
 #   print(json.dumps(parsed,indent=1))
 
 # %%
-print(get_clothing(json_inp))
+#print(get_clothing(json_inp))
 
 # %% [markdown]
 # <hr style="border:2px solid gray"> </hr>  
