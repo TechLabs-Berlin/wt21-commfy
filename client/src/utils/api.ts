@@ -22,3 +22,8 @@ export const useOutfits = () => {
 
   return { loading, error, data };
 };
+
+export const useWeather = () => {
+//Waiting on how the WeatherAPI parsed data
+}
+

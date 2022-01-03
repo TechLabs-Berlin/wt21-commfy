@@ -36,7 +36,6 @@ const Tab1: React.FC = () => {
           </IonCard>
         </IonToolbar>
       </IonHeader>
-
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
