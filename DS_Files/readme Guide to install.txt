@@ -3,7 +3,6 @@ venv\Scripts\activate
 pip install Flask
 pip install pandas
 pip install json
-pip install os
 pip install requests
 pip install datetime
 pip install pytz

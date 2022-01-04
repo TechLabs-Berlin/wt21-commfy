@@ -3,13 +3,11 @@ import json
 from flask import Flask, jsonify, request, Response
 from numpy import number
 import Commfy_RBM as rbm
-import pandas as pd
-#from flask_cors import CORS
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
-#CORS(app)
-outfits = {"sunglasses":(0,1),"neck":(1,2,3)}
+cors = CORS(app)
 
 module_dir = os.path.abspath(os.path.dirname(__file__))
 
