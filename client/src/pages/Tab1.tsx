@@ -1,16 +1,10 @@
-import {
-  IonCard,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonCardContent,
+import {  
   IonContent,
   IonHeader,
   IonPage,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { Weather } from "components/WeatherAPI/Weather";
 import { doc } from "firebase/firestore";
 import { useFirestore, useFirestoreDocData } from "reactfire";
 import ExploreContainer from "../components/ExploreContainer";
@@ -28,12 +22,7 @@ const Tab1: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 1</IonTitle>
-          <IonCard>
-            <IonCardContent>
-            <Weather />
-            </IonCardContent>
-          </IonCard>
+          <IonTitle>Tab 1</IonTitle>        
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

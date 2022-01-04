@@ -5,7 +5,8 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import ExploreContainer from "components/ExploreContainer";
+import { Weather } from "components/WeatherAPI/Weather";
+import { Outfit } from "components/Outfit";
 import { useOutfits } from "utils/api";
 import "./Tab2.css";
 
@@ -17,7 +18,7 @@ const Tab2: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 2</IonTitle>
+          <Weather />
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -26,7 +27,7 @@ const Tab2: React.FC = () => {
             <IonTitle size="large">Tab 2</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
+        <Outfit />
       </IonContent>
     </IonPage>
   );
