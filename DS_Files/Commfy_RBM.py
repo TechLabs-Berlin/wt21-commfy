@@ -14,6 +14,7 @@ import pandas as pd
 from datetime import datetime, timezone
 import pytz
 import numpy as np
+import config
 
 # %% [markdown]
 # ## Part 2 gether Input
@@ -74,8 +75,6 @@ def generate_multi_input(a):
 
 # %%
 def weather(df):
-    # Enter your API key here
-    api_key = "Dummy"
     # base_url variable to store url
     base_url = "http://api.openweathermap.org/data/2.5/weather?"
     future_url="https://api.openweathermap.org/data/2.5/forecast?"
@@ -90,8 +89,8 @@ def weather(df):
         now=datetime.now(pytz.timezone('Europe/Berlin')).replace(tzinfo=None)
         # complete_url variable to store
         # complete url address
-        complete_current_url = base_url + "appid=" + api_key + "&q=" + city_name + "&units=metric"
-        complete_future_url= future_url + "q=" + city_name + "&appid=" + api_key + "&units=metric"
+        complete_current_url = base_url + "appid=" + config.api_key + "&q=" + city_name + "&units=metric"
+        complete_future_url= future_url + "q=" + city_name + "&appid=" + config.api_key + "&units=metric"
         # return response object
         response = requests.get(complete_current_url).json()
         response_future = requests.get(complete_future_url).json()
