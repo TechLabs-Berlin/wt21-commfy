@@ -15,20 +15,20 @@ module_dir = os.path.abspath(os.path.dirname(__file__))
 
 
 
-@app.route("/doc")
+@app.route("/")
 def hello_world():
     return "<p>Hello, from Commfy!</p>\
     <p>this is the documentation to the Commfy Recommendation API </p>\
-    <p> on http://127.0.0.1:5000/api/input you can see all possible input </p>\
-    <p> on http://127.0.0.1:5000/api/outfits you can see all possible outfits </p>\
-    <p> on http://127.0.0.1:5000/api/random_input_example you can see a possible input json </p>\
+    <p> on  <a href='/api/input'>.../api/input</a> you can see all possible input </p>\
+    <p> on <a href='/api/outfits'>.../api/outfits</a> you can see all possible outfits </p>\
+    <p> on <a href='/api/random_input_example'>.../api/random_input_example</a> you can see a possible input json </p>\
     <p> - the input is build like {'tripindex1' : {'location':'xxx','time':'xxx','heaviness_of_trip':'xxx','heat_preference':'xxx','sex':'xxx'}, 'trpindex2':{}} </p>\
-    <p> on http://127.0.0.1:5000/api/random_output you can get a random output </p>\
+    <p> on <a href='/api/random_output'>.../api/random_output</a> you can get a random output </p>\
     <p> - the output consits of 3 parts:</p>\
         <p> -- the clothes to wear now  (inside the [])</p>\
         <p> -- the clothes to bring in the backpack (inside the first {}) </p>\
         <p> -- the clothes to wear on each trip of the input (insdie the last {} starting with {'0':{...}}) </p>\
-    <p> on http://127.0.0.1:5000/api/recommendation you can get the recommendation for your input </p> "
+    <p> on <a href='/api/recommendation'>.../api/recommendation</a> you can get the recommendation for your input </p> "
 
 #give out the defined outfits
 @app.route("/api/outfits", methods=["GET"])
@@ -83,6 +83,10 @@ def random_output():
 @app.route("/api/recommendation", methods=["GET"])
 def filter_outfits():
     data= json.dumps(request.get_json())
+    try:
+        test= rbm.recommendation_json(data)
+    # ...
+    except:
+        return "<p>please insert data as json</p>"
     
-    return rbm.recommendation_json(data)
-    #return data
+    return test
