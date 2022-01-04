@@ -1,0 +1,10 @@
+.container {
+  position: absolute;
+}
+
+.bubble {
+  display: inline-block;
+  margin: auto;
+  border: 1px solid blue;
+  margin-left: 50%;
+}
