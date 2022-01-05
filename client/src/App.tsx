@@ -42,13 +42,14 @@ import { config } from "./utils/config";
 import { routes } from "./utils/routes";
 import AuthRegister from "pages/AuthRegister/AuthRegister";
 
+import { Faq } from "pages/Faq";
 
 setupIonicReact();
 
 const App: React.FC = () => {
   return (
     <IonApp>
-      <FirebaseAppProvider firebaseConfig={config.firebase.config}>        
+      <FirebaseAppProvider firebaseConfig={config.firebase.config}>
         <AuthWrapper>
           <FirestoreWrapper>
             <QueryClientProvider client={apiClient}>
@@ -69,6 +70,9 @@ const App: React.FC = () => {
                     <Route exact path={`/${routes.auth.register}`}>
                       <AuthRegister />
                     </Route>
+                    <Route exact path={`/${routes.auth.faq}`}>
+                      <Faq />
+                    </Route>
                   </IonRouterOutlet>
                   {/* Tabs */}
                   <IonTabBar slot="bottom">
@@ -87,12 +91,20 @@ const App: React.FC = () => {
                       <IonIcon icon={ellipse} />
                       <IonLabel>API</IonLabel>
                     </IonTabButton>
+
+                    <IonTabButton
+                      tab={routes.auth.faq}
+                      href={`/${routes.auth.faq}`}
+                    >
+                      <IonIcon icon={ellipse} />
+                      <IonLabel>FAQ</IonLabel>
+                    </IonTabButton>
                   </IonTabBar>
                 </IonTabs>
               </IonReactRouter>
             </QueryClientProvider>
           </FirestoreWrapper>
-         </AuthWrapper>      
+        </AuthWrapper>
       </FirebaseAppProvider>
     </IonApp>
   );
