@@ -327,16 +327,16 @@ def get_clothing(df):
 def recommendation_json(js):
     json_inp= pd.read_json(js, orient='index',convert_dates=['time'])  
     rec_dfs= get_clothing(add_dummy(weather(json_inp)))
-    rec_js= rec_dfs[0].to_json(orient="records")
-    rec_js= rec_js+rec_dfs[1].to_json(orient="columns")
-    rec_js= rec_js+rec_dfs[2].to_json(orient="index")
+    rec_js= '{"clothes":{"now":'+rec_dfs[0].to_json(orient="records")
+    rec_js= rec_js+',"backpack":'+rec_dfs[1].to_json(orient="columns")
+    rec_js= rec_js+',"perTrip":'+rec_dfs[2].to_json(orient="index")+'}}'
     return rec_js
 
 def recommendation_df(df):
     rec_dfs= get_clothing(add_dummy(weather(df)))
-    rec_js= rec_dfs[0].to_json(orient="records")
-    rec_js= rec_js+rec_dfs[1].to_json(orient="columns")
-    rec_js= rec_js+rec_dfs[2].to_json(orient="index")
+    rec_js= '{"clothes":{"now":'+rec_dfs[0].to_json(orient="records")
+    rec_js= rec_js+',"backpack":'+rec_dfs[1].to_json(orient="columns")
+    rec_js= rec_js+',"perTrip":'+rec_dfs[2].to_json(orient="index")+'}}'
     return rec_js
 # %%
 #for testing generated input

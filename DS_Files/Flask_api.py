@@ -7,7 +7,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
-cors = CORS(app)
+cors= CORS(app, resources={r"/*": {"origins": "*"}})
 
 module_dir = os.path.abspath(os.path.dirname(__file__))
 
@@ -71,12 +71,18 @@ def return_iput():
 @app.route("/api/random_input_example", methods=["GET"])
 def random_input():
 #rbm.recommendation_df(rbm.generate_multi_input(5))
-    return  rbm.generate_multi_input(4).to_json(orient="index",date_format='iso')
+    resp = Response(response=rbm.generate_multi_input(4).to_json(orient="index",date_format='iso'),
+                    status=200,
+                    mimetype="application/json")
+    return  resp
 
 #give out random poutput
 @app.route("/api/random_output", methods=["GET"])
 def random_output():
-    return  rbm.recommendation_df(rbm.generate_multi_input(5))
+    resp = Response(response=rbm.recommendation_df(rbm.generate_multi_input(5)),
+                    status=200,
+                    mimetype="application/json")
+    return  resp
 
 @app.route("/api/recommendation", methods=["GET"])
 def filter_outfits():
@@ -86,5 +92,7 @@ def filter_outfits():
     # ...
     except:
         return "<p>please insert data as json</p>"
-    
-    return test
+    resp = Response(response=test,
+                    status=200,
+                    mimetype="application/json")
+    return resp
