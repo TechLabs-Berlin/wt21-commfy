@@ -109,7 +109,7 @@ const AuthRegister: React.FC = () => {
                     <p style={{ fontSize: "small" }}>
                       By signing up you agree to our <a href="#">Policy</a>
                     </p>
-                    <IonButton type="submit" expand="block" onClick={redirect}>
+                    <IonButton type="submit" expand="block">
                       Register
                     </IonButton>
                     <p style={{ fontSize: "medium" }}>
