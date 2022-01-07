@@ -7,4 +7,5 @@ export const routes = {
     api: "tab/api",
     firebase: "tab/firebase",
   },
+  settings: "settings"
 };

@@ -16,27 +16,31 @@ import { personCircle } from "ionicons/icons";
 import { Formik, FormikConfig } from "formik";
 import { useAuthentication } from "utils/firebase";
 import { routes } from "utils/routes";
+import { useHistory } from "react-router-dom";
 
-const AuthLogin: React.FC = () => {
-  const { signIn } = useAuthentication();
+const AuthRegister: React.FC = () => {
+  const { signUp } = useAuthentication();
 
-  // const username = "matheus@gmail.com";
-  // const pass = "12345678";
+  const history = useHistory();
+  const redirect = () => {
+    history.push("/settings");
+  };
 
   const onSubmit: FormikConfig<any>["onSubmit"] = async (
     values,
     { setSubmitting }
   ) => {
-    const user = await signIn(values.email, values.password);
-    console.log("user", user);
+    const newUser = await signUp(values.email, values.password);
+    console.log("newUser", newUser);
     setSubmitting(false);
+    redirect();
   };
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Login</IonTitle>
+          <IonTitle>Register</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen className="ion-padding ion-text-center">
@@ -55,16 +59,16 @@ const AuthLogin: React.FC = () => {
             }) => (
               <form onSubmit={handleSubmit}>
                 {/* <IonRow>
-                  <IonCol>
-                    <IonAlert
-                      isOpen={}
-                      onDidDismiss={}
-                      header={"Error!"}
-                      message={message}
-                      buttons={["Dismiss"]}
-                    />
-                  </IonCol>
-                </IonRow> */}
+                    <IonCol>
+                      <IonAlert
+                        isOpen={}
+                        onDidDismiss={}
+                        header={"Error!"}
+                        message={message}
+                        buttons={["Dismiss"]}
+                      />
+                    </IonCol>
+                  </IonRow> */}
                 <IonRow>
                   <IonCol>
                     <IonIcon
@@ -103,13 +107,14 @@ const AuthLogin: React.FC = () => {
                 <IonRow>
                   <IonCol>
                     <p style={{ fontSize: "small" }}>
-                      By clicking LOGIN you agree to our <a href="#">Policy</a>
+                      By signing up you agree to our <a href="#">Policy</a>
                     </p>
                     <IonButton type="submit" expand="block">
-                      Login
+                      Register
                     </IonButton>
                     <p style={{ fontSize: "medium" }}>
-                      Don't have an account? <a href={`/${routes.auth.register}`}>Sign up!</a>
+                      Already have an account?{" "}
+                      <a href={`/${routes.auth.login}`}>Log In!</a>
                     </p>
                   </IonCol>
                 </IonRow>
@@ -122,4 +127,4 @@ const AuthLogin: React.FC = () => {
   );
 };
 
-export default AuthLogin;
+export default AuthRegister;

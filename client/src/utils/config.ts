@@ -1,6 +1,10 @@
 export const config = {
   api: {
-    baseUrl: "http://127.0.0.1:5000/api",
+    baseUrl: "http://flogreenie.pythonanywhere.com/api",
+  },
+  weatherapi: {
+    baseUrl: "https://api.weatherapi.com/v1/current.json",
+    apiKey: "f93eb660b2424258bf5155016210712",
   },
   firebase: {
     config: {
