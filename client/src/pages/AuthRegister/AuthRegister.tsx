@@ -23,7 +23,7 @@ const AuthRegister: React.FC = () => {
 
   const history = useHistory();
   const redirect = () => {
-    history.push("/auth/login");
+    history.push("/settings");
   };
 
   const onSubmit: FormikConfig<any>["onSubmit"] = async (

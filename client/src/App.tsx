@@ -41,6 +41,7 @@ import { apiClient } from "./utils/api";
 import { config } from "./utils/config";
 import { routes } from "./utils/routes";
 import AuthRegister from "pages/AuthRegister/AuthRegister";
+import { Usersettings } from "pages/UserSettings/UserSettings";
 
 
 setupIonicReact();
@@ -68,6 +69,9 @@ const App: React.FC = () => {
                     </Route>
                     <Route exact path={`/${routes.auth.register}`}>
                       <AuthRegister />
+                    </Route>
+                    <Route exact path={`/${routes.settings}`}>
+                    <Usersettings />
                     </Route>
                   </IonRouterOutlet>
                   {/* Tabs */}
