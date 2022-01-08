@@ -1,4 +1,4 @@
-import {  
+import {
   IonContent,
   IonHeader,
   IonPage,
@@ -9,6 +9,7 @@ import { doc } from "firebase/firestore";
 import { useFirestore, useFirestoreDocData } from "reactfire";
 import ExploreContainer from "../components/ExploreContainer";
 import "./Tab1.css";
+import { Faq } from "pages/Faq";
 
 const Tab1: React.FC = () => {
   // access the Firestore library
@@ -22,7 +23,7 @@ const Tab1: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 1</IonTitle>        
+          <IonTitle>Tab 1</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -31,6 +32,7 @@ const Tab1: React.FC = () => {
             <IonTitle size="large">Tab 1</IonTitle>
           </IonToolbar>
         </IonHeader>
+        <Faq />
         <ExploreContainer name="Tab 1 page" />
       </IonContent>
     </IonPage>
