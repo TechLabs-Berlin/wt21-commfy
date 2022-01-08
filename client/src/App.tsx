@@ -41,6 +41,7 @@ import { apiClient } from "./utils/api";
 import { config } from "./utils/config";
 import { routes } from "./utils/routes";
 import AuthRegister from "pages/AuthRegister/AuthRegister";
+import { Usersettings } from "pages/UserSettings/UserSettings";
 
 import { Faq } from "pages/Faq";
 
@@ -70,8 +71,13 @@ const App: React.FC = () => {
                     <Route exact path={`/${routes.auth.register}`}>
                       <AuthRegister />
                     </Route>
-                    <Route exact path={`/${routes.auth.faq}`}>
+                    {/*  */}
+                    <Route exact path={`/${routes.info.faq}`}>
                       <Faq />
+                    </Route>
+
+                    <Route exact path={`/${routes.settings}`}>
+                      <Usersettings />
                     </Route>
                   </IonRouterOutlet>
                   {/* Tabs */}
@@ -93,8 +99,8 @@ const App: React.FC = () => {
                     </IonTabButton>
 
                     <IonTabButton
-                      tab={routes.auth.faq}
-                      href={`/${routes.auth.faq}`}
+                      tab={routes.info.faq}
+                      href={`/${routes.info.faq}`}
                     >
                       <IonIcon icon={ellipse} />
                       <IonLabel>FAQ</IonLabel>
