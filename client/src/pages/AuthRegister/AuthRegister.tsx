@@ -15,16 +15,12 @@ import { IonGrid, IonRow, IonCol } from "@ionic/react";
 import { personCircle } from "ionicons/icons";
 import { Formik, FormikConfig } from "formik";
 import { useAuthentication } from "utils/firebase";
+import { useRedirect } from "utils/redirect";
 import { routes } from "utils/routes";
-import { useHistory } from "react-router-dom";
 
 const AuthRegister: React.FC = () => {
   const { signUp } = useAuthentication();
-
-  const history = useHistory();
-  const redirect = () => {
-    history.push("/settings");
-  };
+  const { redirect } = useRedirect();  
 
   const onSubmit: FormikConfig<any>["onSubmit"] = async (
     values,
@@ -33,7 +29,7 @@ const AuthRegister: React.FC = () => {
     const newUser = await signUp(values.email, values.password);
     console.log("newUser", newUser);
     setSubmitting(false);
-    redirect();
+    redirect("/settings");
   };
 
   return (
