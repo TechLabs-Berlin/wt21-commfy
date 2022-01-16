@@ -25,7 +25,7 @@ def hello_world():
     <p> - the output consits of 3 parts:</p>\
         <p> -- the clothes to wear now  (inside the [])</p>\
         <p> -- the clothes to bring in the backpack (inside the first {}) </p>\
-        <p> -- the clothes to wear on each trip of the input (insdie the last {} starting with {'0':{...}}) </p>\
+        <p> -- the clothes to wear on each trip of the input (inside the last {} starting with {'0':{...}}) </p>\
     <p> on <a href='/api/recommendation'>.../api/recommendation</a> you can get the recommendation for your input </p> "
 
 #give out the defined outfits
