@@ -17,4 +17,7 @@ export const config = {
       measurementId: "G-EC9HZG4W8M",
     },
   },
+  functions: {
+    baseUrl: "http://localhost:5000/commfy-dev/us-central1",
+  }
 };

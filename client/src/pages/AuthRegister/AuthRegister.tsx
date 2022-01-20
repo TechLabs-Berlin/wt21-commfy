@@ -10,30 +10,30 @@ import {
   IonButton,
   IonIcon,
 } from "@ionic/react";
-import React from "react";
+import React, { useState } from "react";
 import { IonGrid, IonRow, IonCol } from "@ionic/react";
 import { personCircle } from "ionicons/icons";
 import { Formik, FormikConfig } from "formik";
 import { useAuthentication } from "utils/firebase";
+import { useRedirect } from "utils/redirect";
 import { routes } from "utils/routes";
-import { useHistory } from "react-router-dom";
 
 const AuthRegister: React.FC = () => {
+  
   const { signUp } = useAuthentication();
+  const { redirect } = useRedirect();
+  const [gender, setGender] = useState("");
+  
 
-  const history = useHistory();
-  const redirect = () => {
-    history.push("/settings");
-  };
 
   const onSubmit: FormikConfig<any>["onSubmit"] = async (
     values,
     { setSubmitting }
   ) => {
-    const newUser = await signUp(values.email, values.password);
+    const newUser = await signUp(values.email, values.password, values.nickname, gender, values.personalWeatherTrend);
     console.log("newUser", newUser);
     setSubmitting(false);
-    redirect();
+    redirect("/settings");
   };
 
   return (
@@ -46,7 +46,7 @@ const AuthRegister: React.FC = () => {
       <IonContent fullscreen className="ion-padding ion-text-center">
         <IonGrid>
           <Formik
-            initialValues={{ email: "", password: "" }}
+            initialValues={{ email: "", password: "", nickname: "", gender: "", personalWeatherTrend: 3 }}
             onSubmit={onSubmit}
           >
             {({
@@ -90,6 +90,63 @@ const AuthRegister: React.FC = () => {
                     </IonItem>
                   </IonCol>
                 </IonRow>
+                
+
+                <IonRow>
+                  <IonCol>
+                    <IonItem>
+                      <IonLabel position="floating">Nickname</IonLabel>
+                      <IonInput
+                        type="text"
+                        name="nickname"
+                        value={values.nickname}
+                        onIonInput={handleChange}
+                      ></IonInput>
+                    </IonItem>
+                  </IonCol>
+                </IonRow>
+
+
+                <IonRow style={{ marginTop: "20px" }}>
+                  <IonCol>
+                    <IonLabel position="floating">Sex</IonLabel>
+                    <br />
+                    <div className="radio">
+                      <label>
+                        <input type="radio" value={gender} name="gender" onInput={handleChange} onClick={() => setGender("female")} />
+                        Woman
+                      </label>
+                    </div>
+                    <div className="radio">
+                      <label>
+                        <input type="radio" value={gender} name="gender" onInput={handleChange} onClick={() => setGender("other")} />
+                        Third
+                      </label>
+                    </div>
+                    <div className="radio">
+                      <label>
+                        <input type="radio" value={gender} name="gender" onInput={handleChange} onClick={() => setGender("male")} />
+                        Male
+                      </label>
+                    </div>
+                  </IonCol>
+                </IonRow>
+
+
+                <IonRow style={{ marginTop: "20px" }}>
+                  <IonCol>
+                    <IonLabel position="floating" >While I bike I tend to:</IonLabel>
+                    <div className="range">
+                      <input type="range" min="1" max="5" className="slider" value={values.personalWeatherTrend} onChange={handleChange} name="personalWeatherTrend" />
+                      <div className="sliderticks">
+                        <span>sweat</span>
+                        <span>feel fine</span>
+                        <span>freeze</span>
+                      </div>
+                    </div>
+                  </IonCol>
+                </IonRow>
+
 
                 <IonRow>
                   <IonCol>
@@ -104,6 +161,8 @@ const AuthRegister: React.FC = () => {
                     </IonItem>
                   </IonCol>
                 </IonRow>
+
+
                 <IonRow>
                   <IonCol>
                     <p style={{ fontSize: "small" }}>
