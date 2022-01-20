@@ -1,8 +1,6 @@
-import { Route } from "react-router-dom";
 import {
   IonApp,
   IonIcon,
-  IonLabel,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
@@ -10,9 +8,7 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { ellipse, triangle } from "ionicons/icons";
-import Tab1 from "./pages/Tab1";
-import Tab2 from "./pages/Tab2";
+import { bicycle, calendar, person } from "ionicons/icons";
 import { FirebaseAppProvider } from "reactfire";
 
 /* Core CSS required for Ionic components to work properly */
@@ -44,6 +40,7 @@ import AuthRegister from "pages/AuthRegister/AuthRegister";
 import { Usersettings } from "pages/UserSettings/UserSettings";
 
 import { Faq } from "pages/Faq";
+import { Route } from "components/Route";
 
 setupIonicReact();
 
@@ -58,52 +55,39 @@ const App: React.FC = () => {
                 <IonTabs>
                   {/* Routes Mapping */}
                   <IonRouterOutlet>
-                    <Route exact path={`/${routes.tab.firebase}`}>
-                      <Tab1 />
-                    </Route>
-                    <Route exact path={`/${routes.tab.api}`}>
-                      <Tab2 />
-                    </Route>
                     {/* Auth */}
-                    <Route exact path={`/${routes.auth.login}`}>
+                    <Route.Public exact path={`/${routes.auth.login}`}>
                       <AuthLogin />
-                    </Route>
-                    <Route exact path={`/${routes.auth.register}`}>
+                    </Route.Public>
+                    <Route.Public exact path={`/${routes.auth.register}`}>
                       <AuthRegister />
-                    </Route>
-                    {/*  */}
-                    <Route exact path={`/${routes.info.faq}`}>
+                    </Route.Public>
+                    {/* Profile */}
+                    <Route.Private exact path={`/${routes.profile.faq}`}>
                       <Faq />
-                    </Route>
-
-                    <Route exact path={`/${routes.settings}`}>
+                    </Route.Private>
+                    <Route.Private exact path={`/${routes.profile.settings}`}>
                       <Usersettings />
-                    </Route>
+                    </Route.Private>
                   </IonRouterOutlet>
                   {/* Tabs */}
                   <IonTabBar slot="bottom">
                     <IonTabButton
-                      tab={routes.tab.firebase}
-                      href={`/${routes.tab.firebase}`}
+                      tab={routes.today.home}
+                      href={`/${routes.today.home}`}
                     >
-                      <IonIcon icon={triangle} />
-                      <IonLabel>Firebase</IonLabel>
+                      <IonIcon icon={calendar} />
+                    </IonTabButton>
+
+                    <IonTabButton tab={routes.home} href={`/${routes.home}`}>
+                      <IonIcon icon={bicycle} />
                     </IonTabButton>
 
                     <IonTabButton
-                      tab={routes.tab.api}
-                      href={`/${routes.tab.api}`}
+                      tab={routes.profile.home}
+                      href={`/${routes.profile.home}`}
                     >
-                      <IonIcon icon={ellipse} />
-                      <IonLabel>API</IonLabel>
-                    </IonTabButton>
-
-                    <IonTabButton
-                      tab={routes.info.faq}
-                      href={`/${routes.info.faq}`}
-                    >
-                      <IonIcon icon={ellipse} />
-                      <IonLabel>FAQ</IonLabel>
+                      <IonIcon icon={person} />
                     </IonTabButton>
                   </IonTabBar>
                 </IonTabs>

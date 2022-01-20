@@ -3,12 +3,15 @@ export const routes = {
     login: "auth/login",
     register: "auth/register",
   },
-  info: {
-    faq: "info/faq",
+  today: {
+    home: "today/home",
+    add: "today/add",
   },
-  tab: {
-    api: "tab/api",
-    firebase: "tab/firebase",
+  home: "home",
+  profile: {
+    home: "profile/home",
+    routes: "profile/routes",
+    faq: "profile/faq",
+    settings: "profile/settings",
   },
-  settings: "settings",
 };
