@@ -1,11 +1,13 @@
-import { doc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useFirestore, useFirestoreDocData, useAuth } from "reactfire";
+
+import { useUserProfile } from "./state";
+import { User, UserRegistrationPayload } from "types/User";
 
 export enum FirebaseCollections {
   users = "users",
 }
-
 
 export const useUser = (userId: string) => {
   const userRef = doc(useFirestore(), FirebaseCollections.users, userId);
@@ -15,44 +17,48 @@ export const useUser = (userId: string) => {
 };
 
 export const useAuthentication = () => {
-
   const auth = useAuth();
+  const firestore = useFirestore();
+  const [_, setUserData] = useUserProfile();
 
-
+  // Log in
   const signIn = async (email: string, password: string) => {
-    const user = await signInWithEmailAndPassword(auth, email, password);
-    return user.user;
+    const authUser = await signInWithEmailAndPassword(auth, email, password);
+    const authUid = authUser.user.uid;
+    const userRef = doc(firestore, FirebaseCollections.users, authUid);
+    const userSnap = await getDoc(userRef);
+    const userData = userSnap.data() as User;
+    setUserData(userData);
+
+    return userData;
   };
 
-  const signUp = async (email: string, password: string, nickname: string, gender: string, personalWeatherTrend: number) => {
-    
-    const axios = require("axios")
-    const data = JSON.stringify({
-      "email": email,
-      "password": password,
-      "nickname": nickname,
-      "gender": gender,
-      "personalWeatherTrend": personalWeatherTrend
-    });
+  // Log out
+  const signOut = async () => {
+    await auth.signOut();
+    setUserData(null);
+  };
 
+  // Registration
+  const signUp = async (user: UserRegistrationPayload) => {
     const config = {
-      method: 'post',
-      url: 'http://localhost:5000/commfy-dev/us-central1/createUserProfile',
+      method: "POST",
+      body: JSON.stringify(user),
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      data: data
     };
 
-    axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    const response = await fetch(
+      "http://localhost:5001/commfy-dev/us-central1/createUserProfile",
+      config
+    );
 
-  }
-  return { signIn, signOut: auth.signOut, signUp };
+    if (response.ok) {
+      const userData = await signIn(user.email, user.password);
+      return userData;
+    }
+  };
 
-}
+  return { signIn, signOut, signUp };
+};

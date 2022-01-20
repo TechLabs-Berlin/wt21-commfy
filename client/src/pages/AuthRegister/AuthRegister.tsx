@@ -17,23 +17,22 @@ import { Formik, FormikConfig } from "formik";
 import { useAuthentication } from "utils/firebase";
 import { useRedirect } from "utils/redirect";
 import { routes } from "utils/routes";
+import { UserRegistrationPayload } from "types/User";
 
 const AuthRegister: React.FC = () => {
-  
   const { signUp } = useAuthentication();
   const { redirect } = useRedirect();
   const [gender, setGender] = useState("");
-  
 
-
-  const onSubmit: FormikConfig<any>["onSubmit"] = async (
+  const onSubmit: FormikConfig<UserRegistrationPayload>["onSubmit"] = async (
     values,
     { setSubmitting }
   ) => {
-    const newUser = await signUp(values.email, values.password, values.nickname, gender, values.personalWeatherTrend);
+    console.log("values", values);
+    const newUser = await signUp(values);
     console.log("newUser", newUser);
     setSubmitting(false);
-    redirect("/settings");
+    redirect(routes.profile.settings);
   };
 
   return (
@@ -46,7 +45,13 @@ const AuthRegister: React.FC = () => {
       <IonContent fullscreen className="ion-padding ion-text-center">
         <IonGrid>
           <Formik
-            initialValues={{ email: "", password: "", nickname: "", gender: "", personalWeatherTrend: 3 }}
+            initialValues={{
+              email: "",
+              password: "",
+              nickname: "",
+              gender: "",
+              personalWeatherTrend: 3,
+            }}
             onSubmit={onSubmit}
           >
             {({
@@ -90,7 +95,6 @@ const AuthRegister: React.FC = () => {
                     </IonItem>
                   </IonCol>
                 </IonRow>
-                
 
                 <IonRow>
                   <IonCol>
@@ -106,38 +110,64 @@ const AuthRegister: React.FC = () => {
                   </IonCol>
                 </IonRow>
 
-
                 <IonRow style={{ marginTop: "20px" }}>
                   <IonCol>
                     <IonLabel position="floating">Sex</IonLabel>
                     <br />
                     <div className="radio">
                       <label>
-                        <input type="radio" value={gender} name="gender" onInput={handleChange} onClick={() => setGender("female")} />
+                        <input
+                          type="radio"
+                          value={gender}
+                          name="gender"
+                          onInput={handleChange}
+                          onClick={() => setGender("female")}
+                        />
                         Woman
                       </label>
                     </div>
                     <div className="radio">
                       <label>
-                        <input type="radio" value={gender} name="gender" onInput={handleChange} onClick={() => setGender("other")} />
+                        <input
+                          type="radio"
+                          value={gender}
+                          name="gender"
+                          onInput={handleChange}
+                          onClick={() => setGender("other")}
+                        />
                         Third
                       </label>
                     </div>
                     <div className="radio">
                       <label>
-                        <input type="radio" value={gender} name="gender" onInput={handleChange} onClick={() => setGender("male")} />
+                        <input
+                          type="radio"
+                          value={gender}
+                          name="gender"
+                          onInput={handleChange}
+                          onClick={() => setGender("male")}
+                        />
                         Male
                       </label>
                     </div>
                   </IonCol>
                 </IonRow>
 
-
                 <IonRow style={{ marginTop: "20px" }}>
                   <IonCol>
-                    <IonLabel position="floating" >While I bike I tend to:</IonLabel>
+                    <IonLabel position="floating">
+                      While I bike I tend to:
+                    </IonLabel>
                     <div className="range">
-                      <input type="range" min="1" max="5" className="slider" value={values.personalWeatherTrend} onChange={handleChange} name="personalWeatherTrend" />
+                      <input
+                        type="range"
+                        min="1"
+                        max="5"
+                        className="slider"
+                        value={values.personalWeatherTrend}
+                        onChange={handleChange}
+                        name="personalWeatherTrend"
+                      />
                       <div className="sliderticks">
                         <span>sweat</span>
                         <span>feel fine</span>
@@ -146,7 +176,6 @@ const AuthRegister: React.FC = () => {
                     </div>
                   </IonCol>
                 </IonRow>
-
 
                 <IonRow>
                   <IonCol>
@@ -161,7 +190,6 @@ const AuthRegister: React.FC = () => {
                     </IonItem>
                   </IonCol>
                 </IonRow>
-
 
                 <IonRow>
                   <IonCol>
