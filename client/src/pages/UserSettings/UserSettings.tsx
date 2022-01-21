@@ -17,6 +17,7 @@ import { FunctionComponent } from "react";
 import { useUserProfile } from "utils/state";
 import "./UserSettings.css";
 
+
 export const Usersettings: FunctionComponent = () => {
   const onSubmit: FormikConfig<any>["onSubmit"] = async (
     values,
@@ -150,6 +151,11 @@ export const Usersettings: FunctionComponent = () => {
                   <IonCol>
                     <IonButton type="submit" expand="block">
                       Save Changes
+                    </IonButton>
+                  </IonCol>
+                  <IonCol>
+                    <IonButton type="submit" expand="block">
+                      SignOut
                     </IonButton>
                   </IonCol>
                 </IonRow>

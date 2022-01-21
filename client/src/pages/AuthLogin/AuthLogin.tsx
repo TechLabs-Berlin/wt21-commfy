@@ -16,9 +16,11 @@ import { personCircle } from "ionicons/icons";
 import { Formik, FormikConfig } from "formik";
 import { useAuthentication } from "utils/firebase";
 import { routes } from "utils/routes";
+import { useRedirect } from "utils/redirect";
 
 const AuthLogin: React.FC = () => {
   const { signIn } = useAuthentication();
+  const { redirect } = useRedirect();
 
   // const username = "matheus@gmail.com";
   // const pass = "12345678";
@@ -30,6 +32,8 @@ const AuthLogin: React.FC = () => {
     const user = await signIn(values.email, values.password);
     console.log("user", user);
     setSubmitting(false);
+    redirect(routes.profile.settings)
+
   };
 
   return (

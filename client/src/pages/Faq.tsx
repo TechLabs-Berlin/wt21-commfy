@@ -1,3 +1,4 @@
+import { useUserProfile } from "utils/state"; 
 import React, { useRef } from "react";
 import "./Faq.css";
 
@@ -13,6 +14,8 @@ import {
 
 const Faq: React.FC = () => {
   const accordionGroupRef = useRef(null);
+  const [user] = useUserProfile();
+  console.log("user", user);
 
   return (
     <IonPage>

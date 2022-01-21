@@ -4,9 +4,12 @@ import { atomWithStorage } from "jotai/utils";
 import { User } from "types/User";
 
 export const userProfileAtom = atomWithStorage("user", {} as User);
+export const loggedInAtom = atomWithStorage("logged-in", false);
+
 
 export const useUserProfile = () => {
   const [user, _setUser] = useAtom(userProfileAtom);
+
 
   const setUser = (user: User) => {
     _setUser(() => user);

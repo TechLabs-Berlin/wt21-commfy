@@ -1,12 +1,28 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
 import { Route as RouterRoute, Redirect, RouteProps } from "react-router-dom";
-
+import { useUserProfile, loggedInAtom } from "utils/state";
 import { routes } from "utils/routes";
+import { useAtom } from "jotai";
 
-const loggedIn = false;
+
+
+
+
+
+
 
 const PrivateRoute: FunctionComponent<RouteProps> = (props) => {
+
+
   const { children, ...otherProps } = props;
+  const [user] = useUserProfile();
+  const [loggedIn, setLoggedIn] = useAtom(loggedInAtom)
+
+  useEffect(()=>{
+    if (user.email) {
+    setLoggedIn(true)
+  }},[])
+
 
   return (
     <RouterRoute {...otherProps}>
@@ -19,6 +35,7 @@ const PublicRoute: FunctionComponent<RouteProps & { restricted?: boolean }> = (
   props
 ) => {
   const { children, restricted = false, ...otherProps } = props;
+  const loggedIn = false
 
   return (
     <RouterRoute {...otherProps}>
