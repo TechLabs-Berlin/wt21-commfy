@@ -11,18 +11,19 @@ import { useAtom } from "jotai";
 
 
 
+
 const PrivateRoute: FunctionComponent<RouteProps> = (props) => {
 
   const { children, ...otherProps } = props;
   const [user] = useUserProfile();
   const [loggedIn, setLoggedIn] = useAtom(loggedInAtom)
 
-  useEffect(() => user.email ? setLoggedIn(true) : console.log("no user found"), [])
+  useEffect(() => user ? setLoggedIn(true) : console.log("no user found"), [])
 
 
   return (
     <RouterRoute {...otherProps}>
-      {loggedIn ? children : <Redirect to={`/${routes.auth.login}`} />}
+      {loggedIn === true ? children : <Redirect to={`/${routes.auth.login}`} />}
     </RouterRoute>
   );
 };
