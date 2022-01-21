@@ -13,15 +13,11 @@ import { useAtom } from "jotai";
 
 const PrivateRoute: FunctionComponent<RouteProps> = (props) => {
 
-
   const { children, ...otherProps } = props;
   const [user] = useUserProfile();
   const [loggedIn, setLoggedIn] = useAtom(loggedInAtom)
 
-  useEffect(()=>{
-    if (user.email) {
-    setLoggedIn(true)
-  }},[])
+  useEffect(() => user.email ? setLoggedIn(true) : console.log("no user found"), [])
 
 
   return (
