@@ -9,6 +9,8 @@ import {
   IonInput,
   IonButton,
   IonIcon,
+  IonSegment,
+  IonSegmentButton
 } from "@ionic/react";
 import React, { useState } from "react";
 import { IonGrid, IonRow, IonCol } from "@ionic/react";
@@ -110,48 +112,22 @@ const AuthRegister: React.FC = () => {
                   </IonCol>
                 </IonRow>
 
-                <IonRow style={{ marginTop: "20px" }}>
-                  <IonCol>
-                    <IonLabel position="floating">Sex</IonLabel>
-                    <br />
-                    <div className="radio">
-                      <label>
-                        <input
-                          type="radio"
-                          value={gender}
-                          name="gender"
-                          onInput={handleChange}
-                          onClick={() => setGender("female")}
-                        />
-                        Woman
-                      </label>
-                    </div>
-                    <div className="radio">
-                      <label>
-                        <input
-                          type="radio"
-                          value={gender}
-                          name="gender"
-                          onInput={handleChange}
-                          onClick={() => setGender("other")}
-                        />
-                        Third
-                      </label>
-                    </div>
-                    <div className="radio">
-                      <label>
-                        <input
-                          type="radio"
-                          value={gender}
-                          name="gender"
-                          onInput={handleChange}
-                          onClick={() => setGender("male")}
-                        />
-                        Male
-                      </label>
-                    </div>
-                  </IonCol>
-                </IonRow>
+
+                <IonLabel position="floating">Gender</IonLabel>
+
+                <IonSegment onIonChange={handleChange} id="gender">
+
+                  <IonSegmentButton value={"male"}>
+                    <IonLabel>Male</IonLabel>
+                  </IonSegmentButton>
+                  <IonSegmentButton value={"other"}>
+                    <IonLabel>Other</IonLabel>
+                  </IonSegmentButton>
+                  <IonSegmentButton value={"female"}>
+                    <IonLabel>Female</IonLabel>
+                  </IonSegmentButton>
+
+                </IonSegment>
 
                 <IonRow style={{ marginTop: "20px" }}>
                   <IonCol>
@@ -210,7 +186,7 @@ const AuthRegister: React.FC = () => {
           </Formik>
         </IonGrid>
       </IonContent>
-    </IonPage>
+    </IonPage >
   );
 };
 

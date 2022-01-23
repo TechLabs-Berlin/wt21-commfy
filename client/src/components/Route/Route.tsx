@@ -18,7 +18,7 @@ const PrivateRoute: FunctionComponent<RouteProps> = (props) => {
   const [user] = useUserProfile();
   const [loggedIn, setLoggedIn] = useAtom(loggedInAtom)
 
-  useEffect(() => user ? setLoggedIn(true) : console.log("no user found"), [])
+  useEffect(() => user.email ? setLoggedIn(true) : console.log("no user found"), [])
 
 
   return (

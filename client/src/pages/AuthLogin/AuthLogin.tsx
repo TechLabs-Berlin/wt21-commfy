@@ -32,7 +32,7 @@ const AuthLogin: React.FC = () => {
     const user = await signIn(values.email, values.password);
     console.log("user", user);
     setSubmitting(false);
-    redirect(routes.profile.settings)
+    redirect(routes.home)
 
   };
 
