@@ -41,6 +41,7 @@ import { Usersettings } from "pages/UserSettings/UserSettings";
 
 import { Faq } from "pages/Faq";
 import { Route } from "components/Route";
+import TodayScheduleHome from "pages/TodayScheduleHome";
 
 setupIonicReact();
 
@@ -58,6 +59,9 @@ const App: React.FC = () => {
                     {/* Auth */}
                     <Route.Public exact path={`/${routes.auth.login}`}>
                       <AuthLogin />
+                    </Route.Public>
+                    <Route.Public exact path={`/${routes.today.home}`}>
+                      <TodayScheduleHome />
                     </Route.Public>
                     <Route.Public exact path={`/${routes.auth.register}`}>
                       <AuthRegister />
