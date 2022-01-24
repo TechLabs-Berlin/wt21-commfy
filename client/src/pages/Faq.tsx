@@ -1,6 +1,9 @@
-import { useUserProfile } from "utils/state"; 
+import { useUserProfile } from "utils/state";
+import { useRedirect } from "utils/redirect";
+import { routes } from "utils/routes";
 import React, { useRef } from "react";
 import "./Faq.css";
+import { chevronBack } from "ionicons/icons";
 
 import {
   IonContent,
@@ -10,17 +13,33 @@ import {
   IonLabel,
   IonList,
   IonPage,
+  IonHeader,
+  IonToolbar,
+  IonIcon,
+  IonButton,
+  IonTitle
 } from "@ionic/react";
 
 const Faq: React.FC = () => {
   const accordionGroupRef = useRef(null);
+  const { redirect } = useRedirect()
   const [user] = useUserProfile();
   console.log("user", user);
 
   return (
     <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonButton onClick={() => redirect(routes.profile.home)} slot="start" fill="clear">
+            <IonIcon slot="icon-only" icon={chevronBack}> </IonIcon>
+          </IonButton>
+          <IonTitle>Frequently Asked Questions</IonTitle>
+
+
+        </IonToolbar>
+      </IonHeader>
       <IonContent>
-        {/*-- Open Accordion --*/}
+
         <IonAccordionGroup value="faq">
           <IonAccordion value="question-1">
             <IonItem slot="header">

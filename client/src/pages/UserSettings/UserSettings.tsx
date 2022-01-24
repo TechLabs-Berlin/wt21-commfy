@@ -11,9 +11,13 @@ import {
   IonItem,
   IonInput,
   IonButton,
+  IonIcon
 } from "@ionic/react";
+import { chevronBack } from "ionicons/icons";
 import { Formik, FormikConfig } from "formik";
 import { FunctionComponent } from "react";
+import { useRedirect } from "utils/redirect";
+import { routes } from "utils/routes";
 import { useUserProfile } from "utils/state";
 import "./UserSettings.css";
 
@@ -27,7 +31,7 @@ export const Usersettings: FunctionComponent = () => {
     console.log("newUser", newUser);
     setSubmitting(false);
   };
-
+  const { redirect } = useRedirect()
   const [user] = useUserProfile();
   console.log("user", user);
 
@@ -35,6 +39,9 @@ export const Usersettings: FunctionComponent = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButton onClick={() => redirect(routes.profile.home)} slot="start" fill="clear">
+            <IonIcon slot="icon-only" icon={chevronBack}> </IonIcon>
+          </IonButton>
           <IonTitle class="top-bar">Settings</IonTitle>
         </IonToolbar>
       </IonHeader>

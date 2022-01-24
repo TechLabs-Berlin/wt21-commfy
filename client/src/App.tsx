@@ -38,10 +38,13 @@ import { config } from "./utils/config";
 import { routes } from "./utils/routes";
 import AuthRegister from "pages/AuthRegister/AuthRegister";
 import { Usersettings } from "pages/UserSettings/UserSettings";
+import { ProfileHome } from "pages/ProfileHome/ProfileHome";
 
 import { Faq } from "pages/Faq";
 import { Route } from "components/Route";
 import TodayScheduleHome from "pages/TodayScheduleHome";
+import { Routesdirectory } from "pages/RoutesDirectory/Routesdirectory";
+import Home from "pages/Home/Home";
 
 setupIonicReact();
 
@@ -66,9 +69,18 @@ const App: React.FC = () => {
                     <Route.Public exact path={`/${routes.auth.register}`}>
                       <AuthRegister />
                     </Route.Public>
+                    <Route.Public exact path={`/${routes.home}`}>
+                      <Home />
+                    </Route.Public>
                     {/* Profile */}
+                    <Route.Private exact path={`/${routes.profile.routes}`}>
+                      <Routesdirectory />
+                    </Route.Private>
                     <Route.Private exact path={`/${routes.profile.faq}`}>
                       <Faq />
+                    </Route.Private>
+                    <Route.Private exact path={`/${routes.profile.home}`}>
+                      <ProfileHome />
                     </Route.Private>
                     <Route.Private exact path={`/${routes.profile.settings}`}>
                       <Usersettings />
