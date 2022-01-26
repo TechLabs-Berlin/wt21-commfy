@@ -2,17 +2,41 @@ import React, { useRef, useState } from "react";
 
 import { IonContent, IonPage, IonHeader, IonToolbar, IonButton, IonTitle, IonIcon, IonRow, IonCol, IonGrid, IonModal, IonDatetime } from "@ionic/react";
 import { add } from 'ionicons/icons'
+import RouteCardCreator from "utils/routeCardCreator";
+import { useRoute } from "utils/state";
 
 
 const TodayScheduleHome: React.FC = () => {
+
+  const current = new Date();
+  const time = current.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
+  });
+
   const [showModal, setShowModal] = useState(false);
+  const [newTime, setNewTime] = useState(time)
+  const [newRoute] = useRoute()
+
+
+
+
+
+  const newSchedule = () => {
+    const newCard = document.createElement("div");
+    newCard.innerText = `Start: ${newTime}`;
+    const body = document.querySelector("#body");
+    setShowModal(false);
+    return body.appendChild(newCard);
+  }
 
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonButton onClick={() => setShowModal(true)} slot="end">
+          <IonButton onClick={() => setShowModal(!showModal)} slot="end">
             <IonIcon slot="icon-only" icon={add}> </IonIcon>
           </IonButton>
           <IonModal
@@ -25,14 +49,15 @@ const TodayScheduleHome: React.FC = () => {
                 <IonButton onClick={() => setShowModal(false)} fill="clear">cancel
                 </IonButton>
                 Add to Schedule
-                <IonButton fill="clear">add
+                <IonButton fill="clear" onClick={() => newSchedule()}> add
                 </IonButton>
               </IonHeader>
               <IonGrid>
                 <IonRow className="ion-justify-content-center">
-                  <IonDatetime presentation="time"></IonDatetime>
+                  <IonDatetime presentation="time" value={newTime} onIonChange={(e) => setNewTime(e.detail.value)}></IonDatetime>
                 </IonRow>
               </IonGrid>
+              <RouteCardCreator key={2} from={newRoute.startingPoint} to={newRoute.destination} />
             </IonContent>
           </IonModal>
           <IonIcon slot="icon-only" icon={add}>
@@ -43,7 +68,8 @@ const TodayScheduleHome: React.FC = () => {
       <IonContent>
         <IonGrid>
           <IonRow>
-            <IonCol>Set today's schedule to get specific recommendations</IonCol>
+            <IonCol>
+              <div id="body"></div>Set today's schedule to get specific recommendations</IonCol>
           </IonRow>
         </IonGrid>
       </IonContent>
@@ -51,4 +77,4 @@ const TodayScheduleHome: React.FC = () => {
   );
 };
 
-export default TodayScheduleHome;
+export default TodayScheduleHome

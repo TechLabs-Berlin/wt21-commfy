@@ -50,7 +50,7 @@ export const useAuthentication = () => {
     };
 
     const response = await fetch(
-      "http://localhost:5001/commfy-dev/us-central1/createUserProfile",
+      "http://localhost:5000/commfy-dev/us-central1/createUserProfile",
       config
     );
 
