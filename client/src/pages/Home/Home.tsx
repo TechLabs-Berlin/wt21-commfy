@@ -10,25 +10,25 @@ import {
   IonToolbar,
   IonGrid,
   IonRow,
-  IonCol
+  IonCol,
 } from "@ionic/react";
 import { Weather } from "components/WeatherAPI/Weather";
 import { Outfit } from "components/Outfit";
 import { useOutfits } from "utils/api";
-import { useRedirect } from "utils/redirect"
+import { useRedirect } from "utils/redirect";
 import { routes } from "utils/routes";
 import "./Tab2.css";
 
 const Home: React.FC = () => {
   const { data, loading } = useOutfits();
   console.log(data, loading);
-  const { redirect } = useRedirect()
+  const { redirect } = useRedirect();
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle style={{ textAlign: "center" }}>Commfy</IonTitle>
+      <IonHeader class="header-bg">
+        <IonToolbar class="toolbar-bg">
+          <IonTitle class="title">Commfy</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -48,7 +48,11 @@ const Home: React.FC = () => {
         <IonGrid>
           <IonRow>
             <IonCol className="ion-text-center">
-              <IonButton slot="" size="large" onClick={() => redirect(routes.today.home)}>
+              <IonButton
+                slot=""
+                size="large"
+                onClick={() => redirect(routes.today.home)}
+              >
                 Set Schedule
               </IonButton>
             </IonCol>

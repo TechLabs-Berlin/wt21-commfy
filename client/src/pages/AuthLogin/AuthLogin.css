@@ -1,0 +1,23 @@
+h1 {
+  font-weight: 600;
+  font-size: 2em;
+  text-align: left;
+  margin-top: 0;
+}
+
+p {
+  text-align: left;
+  font-size: 1.3em;
+  margin: 0;
+}
+
+ion-col p {
+  margin-top: 1.5em;
+}
+
+a {
+  color: #466a63;
+  text-decoration: none;
+  font-style: italic;
+  font-weight: 600;
+}

@@ -1,0 +1,28 @@
+ion-item.item-email {
+  --padding-start: 0;
+}
+
+ion-item.item-nickname {
+  --padding-start: 0;
+}
+
+ion-item.item-password {
+  --padding-start: 0;
+}
+
+.sensitivity-register {
+  margin: 0 1em;
+}
+
+.sex-label {
+  position: floating;
+}
+
+ion-grid {
+  padding-top: 0;
+}
+
+ion-segment-button {
+  --color-checked: #fef8ec;
+  --indicator-color: #466a63;
+}

@@ -17,12 +17,12 @@ import {
   IonToolbar,
   IonIcon,
   IonButton,
-  IonTitle
+  IonTitle,
 } from "@ionic/react";
 
 const Faq: React.FC = () => {
   const accordionGroupRef = useRef(null);
-  const { redirect } = useRedirect()
+  const { redirect } = useRedirect();
   const [user] = useUserProfile();
   console.log("user", user);
 
@@ -30,25 +30,28 @@ const Faq: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonButton onClick={() => redirect(routes.profile.home)} slot="start" fill="clear">
-            <IonIcon slot="icon-only" icon={chevronBack}> </IonIcon>
+          <IonButton
+            onClick={() => redirect(routes.profile.home)}
+            slot="start"
+            fill="clear"
+          >
+            <IonIcon slot="icon-only" icon={chevronBack}>
+              {" "}
+            </IonIcon>
           </IonButton>
-          <IonTitle>Frequently Asked Questions</IonTitle>
-
-
+          <IonTitle>FAQ</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
-
         <IonAccordionGroup value="faq">
           <IonAccordion value="question-1">
             <IonItem slot="header">
-              <IonLabel>Question 1</IonLabel>
+              <IonLabel className="label-header">Question 1</IonLabel>
             </IonItem>
 
             <IonList slot="content">
               <IonItem>
-                <IonLabel>
+                <IonLabel className="label-content">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Non
                   expedita vero repellendus architecto odit! Dolorem, recusandae
                   soluta dignissimos veniam ducimus iusto incidunt rerum hic eos
@@ -58,13 +61,13 @@ const Faq: React.FC = () => {
             </IonList>
           </IonAccordion>
           <IonAccordion value="question-2">
-            <IonItem slot="header">
-              <IonLabel>Question 2</IonLabel>
+            <IonItem slot="header" className="item-header">
+              <IonLabel className="label-header">Question 2</IonLabel>
             </IonItem>
 
             <IonList slot="content">
               <IonItem>
-                <IonLabel>
+                <IonLabel className="label-content">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Itaque iste sint sapiente rem maiores consequuntur natus.
                   Porro enim repellendus nulla voluptates veritatis, fuga ipsa,
@@ -74,13 +77,13 @@ const Faq: React.FC = () => {
             </IonList>
           </IonAccordion>
           <IonAccordion value="question-3">
-            <IonItem slot="header">
-              <IonLabel>Question 3</IonLabel>
+            <IonItem slot="header" className="item-header">
+              <IonLabel className="label-header">Question 3</IonLabel>
             </IonItem>
 
             <IonList slot="content">
               <IonItem>
-                <IonLabel>
+                <IonLabel className="label-content">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
                   laborum, a expedita veniam neque temporibus quae omnis nihil
                   doloremque quasi odio voluptatum quibusdam rerum excepturi

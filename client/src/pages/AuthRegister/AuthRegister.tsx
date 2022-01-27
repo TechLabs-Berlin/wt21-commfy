@@ -10,7 +10,7 @@ import {
   IonButton,
   IonIcon,
   IonSegment,
-  IonSegmentButton
+  IonSegmentButton,
 } from "@ionic/react";
 import React, { useState } from "react";
 import { IonGrid, IonRow, IonCol } from "@ionic/react";
@@ -20,6 +20,8 @@ import { useAuthentication } from "utils/firebase";
 import { useRedirect } from "utils/redirect";
 import { routes } from "utils/routes";
 import { UserRegistrationPayload } from "types/User";
+
+import "./AuthRegister.css";
 
 const AuthRegister: React.FC = () => {
   const { signUp } = useAuthentication();
@@ -78,15 +80,7 @@ const AuthRegister: React.FC = () => {
                   </IonRow> */}
                 <IonRow>
                   <IonCol>
-                    <IonIcon
-                      style={{ fontSize: "70px", color: "#0040ff" }}
-                      icon={personCircle}
-                    />
-                  </IonCol>
-                </IonRow>
-                <IonRow>
-                  <IonCol>
-                    <IonItem>
+                    <IonItem className="item-email">
                       <IonLabel position="floating">Email</IonLabel>
                       <IonInput
                         type="email"
@@ -100,23 +94,22 @@ const AuthRegister: React.FC = () => {
 
                 <IonRow>
                   <IonCol>
-                    <IonItem>
+                    <IonItem className="item-nickname">
                       <IonLabel position="floating">Nickname</IonLabel>
                       <IonInput
                         type="text"
                         name="nickname"
                         value={values.nickname}
                         onIonInput={handleChange}
+                        className="nickname"
                       ></IonInput>
                     </IonItem>
                   </IonCol>
                 </IonRow>
 
-
-                <IonLabel position="floating">Gender</IonLabel>
+                <IonLabel className="sex-label">Sex</IonLabel>
 
                 <IonSegment onIonChange={handleChange} id="gender">
-
                   <IonSegmentButton value={"male"}>
                     <IonLabel>Male</IonLabel>
                   </IonSegmentButton>
@@ -126,11 +119,10 @@ const AuthRegister: React.FC = () => {
                   <IonSegmentButton value={"female"}>
                     <IonLabel>Female</IonLabel>
                   </IonSegmentButton>
-
                 </IonSegment>
 
                 <IonRow style={{ marginTop: "20px" }}>
-                  <IonCol>
+                  <IonCol className="sensitivity-register">
                     <IonLabel position="floating">
                       While I bike I tend to:
                     </IonLabel>
@@ -155,7 +147,7 @@ const AuthRegister: React.FC = () => {
 
                 <IonRow>
                   <IonCol>
-                    <IonItem>
+                    <IonItem className="item-password">
                       <IonLabel position="floating">Password</IonLabel>
                       <IonInput
                         type="password"
@@ -186,7 +178,7 @@ const AuthRegister: React.FC = () => {
           </Formik>
         </IonGrid>
       </IonContent>
-    </IonPage >
+    </IonPage>
   );
 };
 

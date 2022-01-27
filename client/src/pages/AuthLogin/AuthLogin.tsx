@@ -18,6 +18,8 @@ import { useAuthentication } from "utils/firebase";
 import { routes } from "utils/routes";
 import { useRedirect } from "utils/redirect";
 
+import "./AuthLogin.css";
+
 const AuthLogin: React.FC = () => {
   const { signIn } = useAuthentication();
   const { redirect } = useRedirect();
@@ -32,8 +34,7 @@ const AuthLogin: React.FC = () => {
     const user = await signIn(values.email, values.password);
     console.log("user", user);
     setSubmitting(false);
-    redirect(routes.home)
-
+    redirect(routes.home);
   };
 
   return (
@@ -69,14 +70,10 @@ const AuthLogin: React.FC = () => {
                     />
                   </IonCol>
                 </IonRow> */}
-                <IonRow>
-                  <IonCol>
-                    <IonIcon
-                      style={{ fontSize: "70px", color: "#0040ff" }}
-                      icon={personCircle}
-                    />
-                  </IonCol>
-                </IonRow>
+                <h1>Let's log you in.</h1>
+                <p>
+                  Welcome back. <br></br>You have been missed!
+                </p>
                 <IonRow>
                   <IonCol>
                     <IonItem>
@@ -113,7 +110,8 @@ const AuthLogin: React.FC = () => {
                       Login
                     </IonButton>
                     <p style={{ fontSize: "medium" }}>
-                      Don't have an account? <a href={`/${routes.auth.register}`}>Sign up!</a>
+                      Don't have an account?{" "}
+                      <a href={`/${routes.auth.register}`}>Sign up!</a>
                     </p>
                   </IonCol>
                 </IonRow>

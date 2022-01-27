@@ -11,7 +11,7 @@ import {
   IonItem,
   IonInput,
   IonButton,
-  IonIcon
+  IonIcon,
 } from "@ionic/react";
 import { chevronBack } from "ionicons/icons";
 import { Formik, FormikConfig } from "formik";
@@ -20,7 +20,6 @@ import { useRedirect } from "utils/redirect";
 import { routes } from "utils/routes";
 import { useUserProfile } from "utils/state";
 import "./UserSettings.css";
-
 
 export const Usersettings: FunctionComponent = () => {
   const onSubmit: FormikConfig<any>["onSubmit"] = async (
@@ -31,25 +30,28 @@ export const Usersettings: FunctionComponent = () => {
     console.log("newUser", newUser);
     setSubmitting(false);
   };
-  const { redirect } = useRedirect()
+  const { redirect } = useRedirect();
   const [user] = useUserProfile();
   console.log("user", user);
 
   return (
-    <IonPage>
+    <IonPage className="page">
       <IonHeader>
-        <IonToolbar>
-          <IonButton onClick={() => redirect(routes.profile.home)} slot="start" fill="clear">
-            <IonIcon slot="icon-only" icon={chevronBack}> </IonIcon>
+        <IonToolbar className="change-color">
+          <IonButton
+            onClick={() => redirect(routes.profile.home)}
+            slot="start"
+            fill="clear"
+          >
+            <IonIcon slot="icon-only" className="back-icon" icon={chevronBack}>
+              {" "}
+            </IonIcon>
           </IonButton>
           <IonTitle class="top-bar">Settings</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen className="ion-padding ion-text-center">
-        <div>
-          <h1>Change Settings</h1>
-        </div>
-        <IonGrid>
+        <IonGrid className="grid-settings">
           <Formik
             initialValues={{ email: "", password: "" }}
             onSubmit={onSubmit}
@@ -86,6 +88,7 @@ export const Usersettings: FunctionComponent = () => {
                         name="email"
                         value={values.email}
                         onIonInput={handleChange}
+                        className="email-input"
                       ></IonInput>
                     </IonItem>
                   </IonCol>
@@ -140,7 +143,7 @@ export const Usersettings: FunctionComponent = () => {
                   </IonCol>
                 </IonRow>
                 <IonRow style={{ marginTop: "20px" }}>
-                  <IonCol>
+                  <IonCol className="sensitivity">
                     <IonLabel position="floating">
                       While I bike I tend to:
                     </IonLabel>
@@ -156,12 +159,16 @@ export const Usersettings: FunctionComponent = () => {
                 </IonRow>
                 <IonRow>
                   <IonCol>
-                    <IonButton type="submit" expand="block">
+                    <IonButton
+                      type="submit"
+                      expand="block"
+                      className="save-changes"
+                    >
                       Save Changes
                     </IonButton>
                   </IonCol>
                   <IonCol>
-                    <IonButton type="submit" expand="block">
+                    <IonButton type="submit" expand="block" className="signout">
                       SignOut
                     </IonButton>
                   </IonCol>
