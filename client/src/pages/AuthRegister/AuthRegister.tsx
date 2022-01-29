@@ -12,7 +12,7 @@ import {
   IonSegment,
   IonSegmentButton
 } from "@ionic/react";
-import React, { useState } from "react";
+import React from "react";
 import { IonGrid, IonRow, IonCol } from "@ionic/react";
 import { personCircle } from "ionicons/icons";
 import { Formik, FormikConfig } from "formik";
@@ -24,7 +24,7 @@ import { UserRegistrationPayload } from "types/User";
 const AuthRegister: React.FC = () => {
   const { signUp } = useAuthentication();
   const { redirect } = useRedirect();
-  const [gender, setGender] = useState("");
+
 
   const onSubmit: FormikConfig<UserRegistrationPayload>["onSubmit"] = async (
     values,

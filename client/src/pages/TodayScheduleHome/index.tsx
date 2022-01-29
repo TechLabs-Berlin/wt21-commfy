@@ -1,35 +1,31 @@
 import React, { useRef, useState } from "react";
 
-import { IonContent, IonPage, IonHeader, IonToolbar, IonButton, IonTitle, IonIcon, IonRow, IonCol, IonGrid, IonModal, IonDatetime } from "@ionic/react";
+import { IonContent, IonPage, IonHeader, IonToolbar, IonButton, IonTitle, IonIcon, IonRow, IonCol, IonGrid, IonModal, IonDatetime, IonLabel, IonItem } from "@ionic/react";
 import { add } from 'ionicons/icons'
-import RouteCardCreator from "utils/routeCardCreator";
-import { useRoute } from "utils/state";
+import { routeArray } from "pages/RoutesDirectory/Routesdirectory";
+import { timeAtom } from "utils/state";
+import { useAtom } from "jotai";
+
+
+
 
 
 const TodayScheduleHome: React.FC = () => {
 
-  const current = new Date();
-  const time = current.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false
-  });
 
   const [showModal, setShowModal] = useState(false);
-  const [newTime, setNewTime] = useState(time)
-  const [newRoute] = useRoute()
+  const [newTime, setNewTime] = useAtom(timeAtom);
+  const [isHidden, setIsHidden] = useState(true);
+  const [scheduleArray, setScheduleArray] = useState([])
 
 
 
-
-
-  const newSchedule = () => {
-    const newCard = document.createElement("div");
-    newCard.innerText = `Start: ${newTime}`;
-    const body = document.querySelector("#body");
-    setShowModal(false);
-    return body.appendChild(newCard);
+  const newSchedule = (e) => {
+    setScheduleArray([[e], ...scheduleArray].reverse())
   }
+
+
+
 
 
   return (
@@ -39,6 +35,7 @@ const TodayScheduleHome: React.FC = () => {
           <IonButton onClick={() => setShowModal(!showModal)} slot="end">
             <IonIcon slot="icon-only" icon={add}> </IonIcon>
           </IonButton>
+
           <IonModal
             trigger="trigger-button"
             isOpen={showModal}
@@ -49,29 +46,51 @@ const TodayScheduleHome: React.FC = () => {
                 <IonButton onClick={() => setShowModal(false)} fill="clear">cancel
                 </IonButton>
                 Add to Schedule
-                <IonButton fill="clear" onClick={() => newSchedule()}> add
+                <IonButton fill="clear" onClick={() => setIsHidden(false)}> add
                 </IonButton>
               </IonHeader>
               <IonGrid>
+                <IonLabel>Select Start Time:</IonLabel>
                 <IonRow className="ion-justify-content-center">
                   <IonDatetime presentation="time" value={newTime} onIonChange={(e) => setNewTime(e.detail.value)}></IonDatetime>
                 </IonRow>
               </IonGrid>
-              <RouteCardCreator key={2} from={newRoute.startingPoint} to={newRoute.destination} />
+
+
+              <IonItem button lines="none" onClick={() => newSchedule(routeArray[0])}>
+                {routeArray[0]}
+              </IonItem>
+              <IonItem button lines="none" onClick={() => newSchedule(routeArray[1])}>
+                {routeArray[1]}
+              </IonItem>
+              <IonItem button lines="none" onClick={() => newSchedule(routeArray[2])}>
+                {routeArray[2]}
+              </IonItem>
+              <IonItem button lines="none" onClick={() => newSchedule(routeArray[3])}>
+                {routeArray[3]}
+              </IonItem>
+              <IonItem button lines="none" onClick={() => newSchedule(routeArray[4])}>
+                {routeArray[4]}
+              </IonItem>
+              <IonItem button lines="none" onClick={() => newSchedule(routeArray[5])}>
+                {routeArray[5]}
+              </IonItem>
+
+
+
             </IonContent>
           </IonModal>
+
+
           <IonIcon slot="icon-only" icon={add}>
           </IonIcon>
           <IonTitle>Today's Schedule</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
-        <IonGrid>
-          <IonRow>
-            <IonCol>
-              <div id="body"></div>Set today's schedule to get specific recommendations</IonCol>
-          </IonRow>
-        </IonGrid>
+      <IonContent hidden={isHidden}>
+
+        {scheduleArray}
+
       </IonContent>
     </IonPage >
   );

@@ -9,9 +9,3 @@ export interface UserRegistrationPayload extends User {
   password: string;
 }
 
-export interface Route {
-  startingPoint: string;
-  destination: string;
-  hardness: number;
-  duration: number;
-}
