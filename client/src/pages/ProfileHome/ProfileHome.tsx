@@ -1,6 +1,7 @@
 import { useUserProfile } from "utils/state";
 import React, { useRef } from "react";
 import { routes } from "utils/routes";
+import { useAuthentication } from "utils/firebase";
 
 import {
   IonContent,
@@ -18,7 +19,9 @@ import {
 const ProfileHome: React.FC = () => {
   const accordionGroupRef = useRef(null);
   const [user] = useUserProfile();
+  const { signOut } = useAuthentication()
   console.log("user", user);
+
 
   return (
     <IonPage>
@@ -42,7 +45,7 @@ const ProfileHome: React.FC = () => {
         </IonItem>
       </IonContent>
       <IonFooter className="ion-no-border">
-        <IonButton expand="block">Log Out</IonButton>
+        <IonButton expand="block" onClick={() => signOut()}>Log Out</IonButton>
       </IonFooter>
     </IonPage>
   );

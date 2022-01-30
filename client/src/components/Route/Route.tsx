@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect } from "react";
 import { Route as RouterRoute, Redirect, RouteProps } from "react-router-dom";
-import { useUserProfile, loggedInAtom } from "utils/state";
+import { useUserProfile } from "utils/state";
 import { routes } from "utils/routes";
 import { useAtom } from "jotai";
 
@@ -16,9 +16,9 @@ const PrivateRoute: FunctionComponent<RouteProps> = (props) => {
 
   const { children, ...otherProps } = props;
   const [user] = useUserProfile();
-  const [loggedIn, setLoggedIn] = useAtom(loggedInAtom)
 
-  useEffect(() => user.email ? setLoggedIn(true) : console.log("no user found"), [])
+
+  const loggedIn = user !== null
 
 
   return (
