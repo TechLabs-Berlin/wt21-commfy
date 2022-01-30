@@ -38,11 +38,6 @@ const Home: React.FC = () => {
             <Weather />
           </IonCardContent>
         </IonCard>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <Outfit />
       </IonContent>
       <IonFooter>
