@@ -26,6 +26,10 @@ export const useWeather = (coords: Coordinates) => {
     error,
     data,
   } = useQuery("weather", async () => {
+    if (!coords) {
+      return { loading: true, error: null, data: null };
+    }
+
     const query = `${coords.latitude},${coords.longitude}`;
 
     const url = new URL(config.weatherapi.baseUrl);
