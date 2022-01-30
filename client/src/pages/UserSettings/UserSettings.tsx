@@ -20,14 +20,16 @@ import { useRedirect } from "utils/redirect";
 import { routes } from "utils/routes";
 import { useUserProfile } from "utils/state";
 import "./UserSettings.css";
+import { useAuthentication } from "utils/firebase";
 
 export const Usersettings: FunctionComponent = () => {
+  const { update } = useAuthentication();
+
   const onSubmit: FormikConfig<any>["onSubmit"] = async (
     values,
     { setSubmitting }
   ) => {
-    const newUser = (values.email, values.password);
-    console.log("newUser", newUser);
+    await update(values);
     setSubmitting(false);
   };
   const { redirect } = useRedirect();
@@ -52,10 +54,7 @@ export const Usersettings: FunctionComponent = () => {
       </IonHeader>
       <IonContent fullscreen className="ion-padding ion-text-center">
         <IonGrid className="grid-settings">
-          <Formik
-            initialValues={{ email: "", password: "" }}
-            onSubmit={onSubmit}
-          >
+          <Formik initialValues={user} onSubmit={onSubmit}>
             {({
               values,
               // errors,
@@ -100,6 +99,7 @@ export const Usersettings: FunctionComponent = () => {
                       <IonInput
                         type="text"
                         name="username"
+                        value={values.nickname}
                         onIonInput={handleChange}
                       ></IonInput>
                     </IonItem>

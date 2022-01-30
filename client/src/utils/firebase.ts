@@ -1,4 +1,4 @@
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useFirestore, useFirestoreDocData, useAuth } from "reactfire";
 
@@ -28,7 +28,7 @@ export const useAuthentication = () => {
     const userRef = doc(firestore, FirebaseCollections.users, authUid);
     const userSnap = await getDoc(userRef);
     const userData = userSnap.data() as User;
-    setUserData(userData);
+    setUserData({ ...userData });
 
     return userData;
   };
@@ -60,5 +60,14 @@ export const useAuthentication = () => {
     }
   };
 
-  return { signIn, signOut, signUp };
+  const update = async (newUserData: UserRegistrationPayload) => {
+    const userRef = doc(
+      firestore,
+      FirebaseCollections.users,
+      auth.currentUser.uid
+    );
+    setDoc(userRef, newUserData);
+  };
+
+  return { signIn, signOut, signUp, update };
 };
