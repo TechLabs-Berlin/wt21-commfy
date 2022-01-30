@@ -65,9 +65,9 @@ const App: React.FC = () => {
                     <Route.Public exact path={`/${routes.auth.login}`}>
                       <AuthLogin />
                     </Route.Public>
-                    <Route.Public exact path={`/${routes.today.home}`}>
+                    <Route.Private exact path={`/${routes.today.home}`}>
                       <TodayScheduleHome />
-                    </Route.Public>
+                    </Route.Private>
                     <Route.Public exact path={`/${routes.auth.register}`}>
                       <AuthRegister />
                     </Route.Public>

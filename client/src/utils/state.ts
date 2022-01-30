@@ -5,7 +5,7 @@ import { User } from "types/User";
 import { Route } from "types/Route";
 
 export const userProfileAtom = atomWithStorage("user", {} as User);
-export const loggedInAtom = atomWithStorage("logged-in", false);
+
 export const routeAtom = atomWithStorage("route", {} as Route);
 export const timeAtom = atom("00:00")
 

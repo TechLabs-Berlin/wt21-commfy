@@ -12,6 +12,8 @@ import {
   IonInput,
   IonButton,
   IonIcon,
+  IonSegment,
+  IonSegmentButton
 } from "@ionic/react";
 import { chevronBack } from "ionicons/icons";
 import { Formik, FormikConfig } from "formik";
@@ -22,8 +24,13 @@ import { useUserProfile } from "utils/state";
 import "./UserSettings.css";
 import { useAuthentication } from "utils/firebase";
 
+
+
 export const Usersettings: FunctionComponent = () => {
   const { update } = useAuthentication();
+  const { redirect } = useRedirect();
+  const [user] = useUserProfile();
+  console.log("user", user);
 
   const onSubmit: FormikConfig<any>["onSubmit"] = async (
     values,
@@ -31,10 +38,10 @@ export const Usersettings: FunctionComponent = () => {
   ) => {
     await update(values);
     setSubmitting(false);
+    redirect(routes.profile.home)
   };
-  const { redirect } = useRedirect();
-  const [user] = useUserProfile();
-  console.log("user", user);
+
+
 
   return (
     <IonPage className="page">
@@ -76,79 +83,53 @@ export const Usersettings: FunctionComponent = () => {
                     </IonCol>
                   </IonRow> */}
 
+
                 <IonRow style={{ marginTop: "20px" }}>
                   <IonCol>
                     <IonItem>
-                      <IonLabel position="floating">
-                        Change Email Address
-                      </IonLabel>
-                      <IonInput
-                        type="email"
-                        name="email"
-                        value={values.email}
-                        onIonInput={handleChange}
-                        className="email-input"
-                      ></IonInput>
-                    </IonItem>
-                  </IonCol>
-                </IonRow>
-                <IonRow style={{ marginTop: "20px" }}>
-                  <IonCol>
-                    <IonItem>
-                      <IonLabel position="floating">Change Username</IonLabel>
+                      <IonLabel position="floating">Change Nickname</IonLabel>
                       <IonInput
                         type="text"
-                        name="username"
+                        name="nickname"
                         value={values.nickname}
                         onIonInput={handleChange}
                       ></IonInput>
                     </IonItem>
                   </IonCol>
                 </IonRow>
+
                 <IonRow style={{ marginTop: "20px" }}>
                   <IonCol>
-                    <IonItem>
-                      <IonLabel position="floating">Change Password</IonLabel>
-                      <IonInput
-                        type="password"
-                        name="password"
-                        value={values.password}
-                        onIonInput={handleChange}
-                      ></IonInput>
-                    </IonItem>
+                    <IonLabel className="sex-label">Change Your Sex</IonLabel>
+                    <IonSegment onIonChange={handleChange} id="gender" value={values.gender}>
+                      <IonSegmentButton value={"male"}>
+                        <IonLabel>Male</IonLabel>
+                      </IonSegmentButton>
+                      <IonSegmentButton value={"other"}>
+                        <IonLabel>Other</IonLabel>
+                      </IonSegmentButton>
+                      <IonSegmentButton value={"female"}>
+                        <IonLabel>Female</IonLabel>
+                      </IonSegmentButton>
+                    </IonSegment>
                   </IonCol>
                 </IonRow>
-                <IonRow style={{ marginTop: "20px" }}>
-                  <IonCol>
-                    <IonLabel position="floating">Sex</IonLabel>
-                    <br />
-                    <div className="radio">
-                      <label>
-                        <input type="radio" value="option1" name="sex" />
-                        Woman
-                      </label>
-                    </div>
-                    <div className="radio">
-                      <label>
-                        <input type="radio" value="option2" name="sex" />
-                        Third
-                      </label>
-                    </div>
-                    <div className="radio">
-                      <label>
-                        <input type="radio" value="option3" name="sex" />
-                        Man
-                      </label>
-                    </div>
-                  </IonCol>
-                </IonRow>
-                <IonRow style={{ marginTop: "20px" }}>
+
+                <IonRow style={{ marginTop: "20%" }}>
                   <IonCol className="sensitivity">
                     <IonLabel position="floating">
                       While I bike I tend to:
                     </IonLabel>
                     <div className="range">
-                      <input type="range" min="1" max="5" className="slider" />
+                      <input
+                        type="range"
+                        min="1"
+                        max="5"
+                        className="slider"
+                        value={values.personalWeatherTrend}
+                        onChange={handleChange}
+                        name="personalWeatherTrend"
+                      />
                       <div className="sliderticks">
                         <span>sweat</span>
                         <span>feel fine</span>
@@ -165,11 +146,6 @@ export const Usersettings: FunctionComponent = () => {
                       className="save-changes"
                     >
                       Save Changes
-                    </IonButton>
-                  </IonCol>
-                  <IonCol>
-                    <IonButton type="submit" expand="block" className="signout">
-                      SignOut
                     </IonButton>
                   </IonCol>
                 </IonRow>

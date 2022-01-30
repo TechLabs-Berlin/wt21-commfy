@@ -65,7 +65,9 @@ export const useAuthentication = () => {
       firestore,
       FirebaseCollections.users,
       auth.currentUser.uid
+
     );
+    setUserData(newUserData)
     setDoc(userRef, newUserData);
   };
 
