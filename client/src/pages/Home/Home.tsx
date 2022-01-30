@@ -17,7 +17,6 @@ import { Outfit } from "components/Outfit";
 import { useOutfits } from "utils/api";
 import { useRedirect } from "utils/redirect";
 import { routes } from "utils/routes";
-import "./Tab2.css";
 
 const Home: React.FC = () => {
   const { data, loading } = useOutfits();

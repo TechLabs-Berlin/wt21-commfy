@@ -28,14 +28,16 @@ import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
 
 /* Theme variables */
-import "./theme/variables.css";
-import { FirestoreWrapper } from "./components/FirestoreWrapper";
-import { AuthWrapper } from "./components/AuthWrapper";
-import AuthLogin from "./pages/AuthLogin/AuthLogin";
+import "theme/variables.css";
+import "theme/globals.css";
+
+import { FirestoreWrapper } from "components/FirestoreWrapper";
+import { AuthWrapper } from "components/AuthWrapper";
+import AuthLogin from "pages/AuthLogin/AuthLogin";
 import { QueryClientProvider } from "react-query";
-import { apiClient } from "./utils/api";
-import { config } from "./utils/config";
-import { routes } from "./utils/routes";
+import { apiClient } from "utils/api";
+import { config } from "utils/config";
+import { routes } from "utils/routes";
 import AuthRegister from "pages/AuthRegister/AuthRegister";
 import { Usersettings } from "pages/UserSettings/UserSettings";
 import { ProfileHome } from "pages/ProfileHome/ProfileHome";
