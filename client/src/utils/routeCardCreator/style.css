@@ -22,3 +22,29 @@
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+h1 {
+  text-align: center;
+}
+
+.item-wrapper {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+}
+
+.label-wrapper {
+  margin: 0;
+}
+
+.sc-ion-label-ios-s h1 {
+  font-size: 2.1em;
+}
+
+.route-duration {
+  padding-left: 1em;
+  font-size: 1em;
+}
+
+ion-grid {
+  padding: 0;
+}

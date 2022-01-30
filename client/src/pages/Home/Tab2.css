@@ -41,3 +41,8 @@ ion-title {
   text-shadow: 1px 1px #466a63;
   font-weight: lighter;
 }
+
+ion-segment-button {
+  --color-checked: #fef8ec;
+  --indicator-color: #466a63;
+}

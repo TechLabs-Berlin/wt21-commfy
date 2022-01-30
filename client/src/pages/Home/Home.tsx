@@ -21,7 +21,7 @@ import "./Tab2.css";
 
 const Home: React.FC = () => {
   const { data, loading } = useOutfits();
-  useOutfits()
+  useOutfits();
   console.log(data, loading);
   const { redirect } = useRedirect();
 
