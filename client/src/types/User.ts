@@ -8,3 +8,4 @@ export interface User {
 export interface UserRegistrationPayload extends User {
   password: string;
 }
+
