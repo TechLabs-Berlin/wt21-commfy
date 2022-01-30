@@ -30,15 +30,15 @@ const ProfileHome: React.FC = () => {
       <IonContent>
         <IonItem href={`/${routes.profile.settings}`}>
           <IonLabel>Profile Settings</IonLabel>
-          <IonIcon icon="chevron-forward"></IonIcon>
+          {/* <IonIcon icon="chevron-forward"></IonIcon> */}
         </IonItem>
         <IonItem href={`/${routes.profile.routes}`}>
           <IonLabel>My Routes</IonLabel>
-          <IonIcon icon="chevron-forward"></IonIcon>
+          {/* <IonIcon icon="chevron-forward"></IonIcon> */}
         </IonItem>
         <IonItem href={`/${routes.profile.faq}`}>
           <IonLabel>FAQ</IonLabel>
-          <IonIcon icon="chevron-forward"></IonIcon>
+          {/* <IonIcon icon="chevron-forward"></IonIcon> */}
         </IonItem>
       </IonContent>
       <IonFooter className="ion-no-border">
