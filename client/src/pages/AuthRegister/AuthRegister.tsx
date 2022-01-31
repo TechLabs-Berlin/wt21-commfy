@@ -27,7 +27,6 @@ const AuthRegister: React.FC = () => {
   const { signUp } = useAuthentication();
   const { redirect } = useRedirect();
 
-
   const onSubmit: FormikConfig<UserRegistrationPayload>["onSubmit"] = async (
     values,
     { setSubmitting }
@@ -106,7 +105,7 @@ const AuthRegister: React.FC = () => {
                     </IonItem>
                   </IonCol>
                 </IonRow>
-
+                <br></br>
                 <IonLabel className="sex-label">Sex</IonLabel>
 
                 <IonSegment onIonChange={handleChange} id="gender">
@@ -120,8 +119,8 @@ const AuthRegister: React.FC = () => {
                     <IonLabel>Female</IonLabel>
                   </IonSegmentButton>
                 </IonSegment>
-
-                <IonRow style={{ marginTop: "20px" }}>
+                <br></br>
+                <IonRow>
                   <IonCol className="sensitivity-register">
                     <IonLabel position="floating">
                       While I bike I tend to:
@@ -161,13 +160,13 @@ const AuthRegister: React.FC = () => {
 
                 <IonRow>
                   <IonCol>
-                    <p style={{ fontSize: "small" }}>
+                    <p className="signup-info-above">
                       By signing up you agree to our <a href="#">Policy</a>
                     </p>
                     <IonButton type="submit" expand="block">
                       Register
                     </IonButton>
-                    <p style={{ fontSize: "medium" }}>
+                    <p className="signup-info-below">
                       Already have an account?{" "}
                       <a href={`/${routes.auth.login}`}>Log In!</a>
                     </p>

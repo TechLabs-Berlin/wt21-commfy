@@ -22,7 +22,14 @@ ion-grid {
   padding-top: 0;
 }
 
-ion-segment-button {
-  --color-checked: #fef8ec;
-  --indicator-color: #466a63;
+.signup-info-above {
+  font-size: 0.9em;
+}
+
+.signup-info-below {
+  font-size: 1em;
+}
+
+.sliderticks {
+  font-size: 0.8em;
 }

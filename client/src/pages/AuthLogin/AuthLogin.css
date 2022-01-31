@@ -21,3 +21,11 @@ a {
   font-style: italic;
   font-weight: 600;
 }
+
+.login-info-above {
+  font-size: 0.9em;
+}
+
+.login-info-below {
+  font-size: 1em;
+}
