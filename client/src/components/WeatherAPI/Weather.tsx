@@ -1,3 +1,4 @@
+import { IonItem, IonImg } from "@ionic/react";
 import { FunctionComponent } from "react";
 
 import { useCurrentPosition, useWeather } from "utils/weather";
@@ -9,5 +10,17 @@ export const Weather: FunctionComponent = () => {
   const weatherInfo = useWeather(currentPosition);
   console.log("weatherInfo", weatherInfo);
 
-  return <div> WeatherAPI fetch result goes here! </div>;
+
+
+  if (weatherInfo.loading) {
+    return <div> loading Weather Info....</div>;
+  } else if (weatherInfo.data.loading) {
+    return <div> loading Weather Info....</div>;
+  } else {
+    return (
+      <IonItem>
+        {weatherInfo.data.location.name} {`${weatherInfo.data.current.temp_c}°C`} <IonImg src={weatherInfo.data.current.condition.icon}></IonImg>
+      </IonItem>
+    )
+  }
 };
