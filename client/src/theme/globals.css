@@ -46,3 +46,7 @@ ion-segment-button {
   --color-checked: #fef8ec;
   --indicator-color: #466a63;
 }
+
+span {
+  color: #466a63;
+}

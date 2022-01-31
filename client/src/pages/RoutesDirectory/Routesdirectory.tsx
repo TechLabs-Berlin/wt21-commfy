@@ -90,7 +90,7 @@ const Routesdirectory: React.FC = () => {
               {" "}
             </IonIcon>
           </IonButton>
-          <IonTitle style={{ textAlign: "center" }}>My Routes</IonTitle>
+          <IonTitle>My Routes</IonTitle>
           <IonButton onClick={() => setShowModal(true)} slot="end" fill="clear">
             <IonIcon slot="icon-only" icon={add}>
               {" "}
