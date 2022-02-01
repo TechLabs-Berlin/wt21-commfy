@@ -109,13 +109,13 @@ const AuthRegister: React.FC = () => {
                 <IonLabel className="sex-label">Sex</IonLabel>
 
                 <IonSegment onIonChange={handleChange} id="gender">
-                  <IonSegmentButton value={"male"}>
+                  <IonSegmentButton value={"m"}>
                     <IonLabel>Male</IonLabel>
                   </IonSegmentButton>
-                  <IonSegmentButton value={"other"}>
+                  <IonSegmentButton value={"d"}>
                     <IonLabel>Other</IonLabel>
                   </IonSegmentButton>
-                  <IonSegmentButton value={"female"}>
+                  <IonSegmentButton value={"f"}>
                     <IonLabel>Female</IonLabel>
                   </IonSegmentButton>
                 </IonSegment>

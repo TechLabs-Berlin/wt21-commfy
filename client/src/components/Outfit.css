@@ -3,8 +3,8 @@
 }
 
 .bubble {
-  display: inline-block;
-  margin: auto;
-  border: 1px solid blue;
-  margin-left: 50%;
+  display: flex;
+  justify-content: space-evenly;
+  border: 1px solid black;
+  box-sizing: border-box;
 }

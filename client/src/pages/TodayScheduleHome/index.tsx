@@ -18,7 +18,7 @@ import {
 } from "@ionic/react";
 import { add } from "ionicons/icons";
 import { routeArray } from "pages/RoutesDirectory/Routesdirectory";
-import { timeAtom } from "utils/state";
+import { hardnessAtom, timeAtom } from "utils/state";
 import { selectAtom } from "utils/state";
 import { useAtom } from "jotai";
 
@@ -32,10 +32,14 @@ const TodayScheduleHome: React.FC = () => {
   const [isHidden, setIsHidden] = useState(true);
   const [scheduleArray, setScheduleArray] = useState([]);
   const [selected, setSelected] = useAtom(selectAtom);
+  const [hardness, setHardness] = useAtom(hardnessAtom)
 
   const newSchedule = (e) => {
     setScheduleArray([[e], ...scheduleArray].reverse());
     setSelected(routeArray.indexOf(e))
+    setHardness(e.props.hardness)
+
+
   };
 
 

@@ -11,6 +11,7 @@ import {
   IonGrid,
   IonRow,
   IonCol,
+  IonImg,
 } from "@ionic/react";
 import { Weather } from "components/WeatherAPI/Weather";
 import { Outfit } from "components/Outfit";
@@ -25,7 +26,7 @@ import { routeArray } from "pages/RoutesDirectory/Routesdirectory";
 
 const Home: React.FC = () => {
   const { data, loading } = useOutfits();
-  const [selected, setSelected] = useAtom(selectAtom)
+  const [selected] = useAtom(selectAtom)
   useOutfits();
 
   console.log(data, loading);
@@ -44,7 +45,17 @@ const Home: React.FC = () => {
             <Weather />
           </IonCardContent>
         </IonCard>
-        <Outfit />
+        <IonGrid>
+          <IonRow>
+            <IonCol size="5">
+              <IonImg src="assets/icon/custom/peeps/Robin.png"></IonImg>
+              <IonImg src="assets/icon/custom/backpack.png"></IonImg>
+            </IonCol>
+            <IonCol>
+              <Outfit />
+            </IonCol>
+          </IonRow>
+        </IonGrid>
         <IonCard>{routeArray[selected]}</IonCard>
       </IonContent>
       <IonFooter>

@@ -6,24 +6,32 @@ import {
   IonCol,
   IonContent,
 } from "@ionic/react";
-import { FunctionComponent } from "react";
-
+import { FunctionComponent, } from "react";
 import { useCurrentPosition, useWeather } from "utils/weather";
-
 import "./Weather.css";
 
 export const Weather: FunctionComponent = () => {
+
+
+
+
   const currentPosition = useCurrentPosition();
   console.log("currentPosition", currentPosition);
 
   const weatherInfo = useWeather(currentPosition);
   console.log("weatherInfo", weatherInfo);
 
+
+
+
+
+
   if (weatherInfo.loading) {
     return <div> loading Weather Info....</div>;
   } else if (weatherInfo.data.loading) {
     return <div> loading Weather Info....</div>;
   } else {
+
     return (
       <IonItem className="current-weather-card">
         <IonContent>

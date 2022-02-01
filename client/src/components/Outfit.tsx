@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { IonCard, IonGrid, IonRow, IonCol } from "@ionic/react";
+import { IonGrid, IonRow, IonCol } from "@ionic/react";
 
 import "./Outfit.css"
 
@@ -14,71 +14,38 @@ export const Outfit: FunctionComponent = () => {
 
     return (
         <IonGrid>
-            <IonRow>
+            <IonRow className="ion-align-items-start">
                 <IonCol>
-                    <IonCard class="bubble">
-                        <ClothesItemCreator item="headwear" />
+                    <ClothesItemCreator item="headwear" />
+                    <ClothesItemCreator item="neck" />
+                </IonCol>
+            </IonRow>
 
-                    </IonCard>
-                    <IonCard class="bubble">
-                        <ClothesItemCreator item="neck" />
-                    </IonCard>
+            <IonRow>
+                <IonCol >
+                    <ClothesItemCreator item="singlet" />
                 </IonCol>
             </IonRow>
 
             <IonRow>
                 <IonCol>
-                    <IonCard class="bubble">
-                        <ClothesItemCreator item="singlet" />
-                    </IonCard>
-                    <IonCard class="bubble">
-                        <ClothesItemCreator item="shirt" />
-                    </IonCard>
+                    <ClothesItemCreator item="upper_body_second_layer" />
+                    <ClothesItemCreator item="upper_body_outer_layer" />
+                    <ClothesItemCreator item="upper_body_third_layer" />
+                </IonCol>
+            </IonRow>
+
+
+            <IonRow>
+                <IonCol>
+                    <ClothesItemCreator item="raintrousers" />
                 </IonCol>
             </IonRow>
 
             <IonRow>
-                <IonCol>
-                    <IonCard class="bubble">
-                        <ClothesItemCreator item="upper_body_second_layer" />
-
-                    </IonCard>
-                    <IonCard class="bubble">
-                        <ClothesItemCreator item="upper_body_outer_layer" />
-                    </IonCard>
-                </IonCol>
-            </IonRow>
-
-            <IonRow>
-                <IonCol>
-                    <IonCard class="bubble">
-                        <ClothesItemCreator item="upper_body_third_layer" />
-                    </IonCard>
-                    <IonCard class="bubble">
-                        <ClothesItemCreator item="hands" />
-                    </IonCard>
-                </IonCol>
-            </IonRow>
-
-            <IonRow>
-                <IonCol>
-                    <IonCard class="bubble">
-                        <ClothesItemCreator item="legs" />
-                    </IonCard>
-                    <IonCard class="bubble">
-                        <ClothesItemCreator item="raintrousers" />
-                    </IonCard>
-                </IonCol>
-            </IonRow>
-
-            <IonRow>
-                <IonCol>
-                    <IonCard class="bubble">
-                        <ClothesItemCreator item="socks" />
-                    </IonCard>
-                    <IonCard class="bubble">
-                        <ClothesItemCreator item="shoes" />
-                    </IonCard>
+                <IonCol >
+                    <ClothesItemCreator item="socks" />
+                    <ClothesItemCreator item="shoes" />
                 </IonCol>
             </IonRow>
         </IonGrid >

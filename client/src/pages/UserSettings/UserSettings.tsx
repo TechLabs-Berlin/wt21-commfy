@@ -102,13 +102,13 @@ export const Usersettings: FunctionComponent = () => {
                   <IonCol>
                     <IonLabel className="sex-label">Change Your Sex</IonLabel>
                     <IonSegment onIonChange={handleChange} id="gender" value={values.gender}>
-                      <IonSegmentButton value={"male"}>
+                      <IonSegmentButton value={"m"}>
                         <IonLabel>Male</IonLabel>
                       </IonSegmentButton>
-                      <IonSegmentButton value={"other"}>
+                      <IonSegmentButton value={"d"}>
                         <IonLabel>Other</IonLabel>
                       </IonSegmentButton>
-                      <IonSegmentButton value={"female"}>
+                      <IonSegmentButton value={"f"}>
                         <IonLabel>Female</IonLabel>
                       </IonSegmentButton>
                     </IonSegment>
@@ -123,7 +123,7 @@ export const Usersettings: FunctionComponent = () => {
                     <div className="range">
                       <input
                         type="range"
-                        min="1"
+                        min="-5"
                         max="5"
                         className="slider"
                         value={values.personalWeatherTrend}
