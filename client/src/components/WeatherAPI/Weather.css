@@ -1,0 +1,20 @@
+.location {
+  font-size: 1.1em;
+  color: #000;
+}
+
+.temp {
+  font-size: 1.1em;
+  color: #000;
+}
+
+.card-content-ios {
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+}
+
+.current-weather-card {
+  --inner-border-width: 0;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+}

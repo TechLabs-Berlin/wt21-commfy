@@ -103,13 +103,13 @@ const AuthLogin: React.FC = () => {
                 </IonRow>
                 <IonRow>
                   <IonCol>
-                    <p style={{ fontSize: "small" }}>
+                    <p className="login-info-above">
                       By clicking LOGIN you agree to our <a href="#">Policy</a>
                     </p>
                     <IonButton type="submit" expand="block">
                       Login
                     </IonButton>
-                    <p style={{ fontSize: "medium" }}>
+                    <p className="login-info-below">
                       Don't have an account?{" "}
                       <a href={`/${routes.auth.register}`}>Sign up!</a>
                     </p>

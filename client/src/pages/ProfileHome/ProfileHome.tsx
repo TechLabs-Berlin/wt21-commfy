@@ -16,18 +16,19 @@ import {
   IonFooter,
 } from "@ionic/react";
 
+import "./ProfileHome.css";
+
 const ProfileHome: React.FC = () => {
   const accordionGroupRef = useRef(null);
   const [user] = useUserProfile();
-  const { signOut } = useAuthentication()
+  const { signOut } = useAuthentication();
   console.log("user", user);
-
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle style={{ textAlign: "center" }}>Profile</IonTitle>
+          <IonTitle>Profile</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -45,7 +46,13 @@ const ProfileHome: React.FC = () => {
         </IonItem>
       </IonContent>
       <IonFooter className="ion-no-border">
-        <IonButton expand="block" onClick={() => signOut()}>Log Out</IonButton>
+        <IonButton
+          className="signout-button"
+          expand="block"
+          onClick={() => signOut()}
+        >
+          Log Out
+        </IonButton>
       </IonFooter>
     </IonPage>
   );
