@@ -36,7 +36,7 @@ const AuthRegister: React.FC = () => {
     const newUser = await signUp(values);
     console.log("newUser", newUser);
     setSubmitting(false);
-    redirect(routes.profile.settings);
+    redirect(routes.home);
   };
 
   return (
@@ -129,7 +129,7 @@ const AuthRegister: React.FC = () => {
                     <div className="range">
                       <input
                         type="range"
-                        min="1"
+                        min="-5"
                         max="5"
                         className="slider"
                         value={values.personalWeatherTrend}

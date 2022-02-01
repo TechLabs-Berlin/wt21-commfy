@@ -43,7 +43,7 @@ const raw = JSON.stringify({
 
 export const useOutfits = () => {
   const opts = {
-    method: "GET",
+    method: "POST",
     headers: myHeaders,
     body: raw,
   };

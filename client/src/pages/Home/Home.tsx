@@ -17,10 +17,17 @@ import { Outfit } from "components/Outfit";
 import { useOutfits } from "utils/api";
 import { useRedirect } from "utils/redirect";
 import { routes } from "utils/routes";
+import { useAtom } from "jotai";
+import { selectAtom } from "utils/state";
+import { routeArray } from "pages/RoutesDirectory/Routesdirectory";
+
+
 
 const Home: React.FC = () => {
   const { data, loading } = useOutfits();
+  const [selected, setSelected] = useAtom(selectAtom)
   useOutfits();
+
   console.log(data, loading);
   const { redirect } = useRedirect();
 
@@ -38,18 +45,23 @@ const Home: React.FC = () => {
           </IonCardContent>
         </IonCard>
         <Outfit />
+        <IonCard>{routeArray[selected]}</IonCard>
       </IonContent>
       <IonFooter>
         <IonGrid>
           <IonRow>
             <IonCol className="ion-text-center">
+
               <IonButton
                 slot=""
                 size="large"
                 onClick={() => redirect(routes.today.home)}
+                className={routeArray[selected] ? "ion-hide" : ""}
+
               >
                 Set Schedule
               </IonButton>
+
             </IonCol>
           </IonRow>
         </IonGrid>

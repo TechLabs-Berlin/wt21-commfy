@@ -19,19 +19,26 @@ import {
 import { add } from "ionicons/icons";
 import { routeArray } from "pages/RoutesDirectory/Routesdirectory";
 import { timeAtom } from "utils/state";
+import { selectAtom } from "utils/state";
 import { useAtom } from "jotai";
 
 import "./TodayScheduleHome.css";
+
+
 
 const TodayScheduleHome: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [newTime, setNewTime] = useAtom(timeAtom);
   const [isHidden, setIsHidden] = useState(true);
   const [scheduleArray, setScheduleArray] = useState([]);
+  const [selected, setSelected] = useAtom(selectAtom);
 
   const newSchedule = (e) => {
     setScheduleArray([[e], ...scheduleArray].reverse());
+    setSelected(routeArray.indexOf(e))
   };
+
+
 
   return (
     <IonPage>
