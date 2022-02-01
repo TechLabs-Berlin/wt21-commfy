@@ -16,6 +16,8 @@ import {
   IonFooter,
 } from "@ionic/react";
 
+import "./ProfileHome.css";
+
 const ProfileHome: React.FC = () => {
   const accordionGroupRef = useRef(null);
   const [user] = useUserProfile();
@@ -44,7 +46,11 @@ const ProfileHome: React.FC = () => {
         </IonItem>
       </IonContent>
       <IonFooter className="ion-no-border">
-        <IonButton expand="block" onClick={() => signOut()}>
+        <IonButton
+          className="signout-button"
+          expand="block"
+          onClick={() => signOut()}
+        >
           Log Out
         </IonButton>
       </IonFooter>

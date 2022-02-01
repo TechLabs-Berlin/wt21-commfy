@@ -19,16 +19,6 @@ form {
   color: #466a63;
 }
 
-ion-button.save-changes {
-  padding: 0.6em 0.1em;
-  font-weight: 600;
-}
-
-ion-button.signout {
-  padding: 0.6em 0.1em;
-  font-weight: 600;
-}
-
 .slider {
   -webkit-appearance: none;
   appearance: none;
