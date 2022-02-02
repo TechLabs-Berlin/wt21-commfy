@@ -84,8 +84,21 @@ def random_output():
                     mimetype="application/json")
     return  resp
 
-@app.route("/api/recommendation", methods=["GET"])
+@app.route("/api/recommendation", methods=["POST"])
 def filter_outfits():
+    data= json.dumps(request.get_json())
+    try:
+        test= rbm.recommendation_json(data)
+    # ...
+    except:
+        return "<p>please insert data as json</p>"
+    resp = Response(response=test,
+                    status=200,
+                    mimetype="application/json")
+    return resp
+
+@app.route("/api/recommendation_get", methods=["GET"])
+def filter_outfits2():
     data= json.dumps(request.get_json())
     try:
         test= rbm.recommendation_json(data)
