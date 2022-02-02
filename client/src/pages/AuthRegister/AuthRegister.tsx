@@ -8,13 +8,15 @@ import {
   IonLabel,
   IonInput,
   IonButton,
-  IonIcon,
   IonSegment,
   IonSegmentButton,
+  IonLoading,
+  IonGrid,
+  IonRow,
+  IonCol
 } from "@ionic/react";
 import React from "react";
-import { IonGrid, IonRow, IonCol } from "@ionic/react";
-import { personCircle } from "ionicons/icons";
+import { useState } from "react";
 import { Formik, FormikConfig } from "formik";
 import { useAuthentication } from "utils/firebase";
 import { useRedirect } from "utils/redirect";
@@ -24,18 +26,27 @@ import { UserRegistrationPayload } from "types/User";
 import "./AuthRegister.css";
 
 const AuthRegister: React.FC = () => {
+
+  const [showLoading, setShowLoading] = useState(false);
   const { signUp } = useAuthentication();
   const { redirect } = useRedirect();
+
+
+
+
 
   const onSubmit: FormikConfig<UserRegistrationPayload>["onSubmit"] = async (
     values,
     { setSubmitting }
   ) => {
+    setShowLoading(true)
     console.log("values", values);
     const newUser = await signUp(values);
     console.log("newUser", newUser);
     setSubmitting(false);
     redirect(routes.home);
+    setShowLoading(false)
+
   };
 
   return (
@@ -52,8 +63,8 @@ const AuthRegister: React.FC = () => {
               email: "",
               password: "",
               nickname: "",
-              gender: "",
-              personalWeatherTrend: 3,
+              gender: "d",
+              personalWeatherTrend: 0,
             }}
             onSubmit={onSubmit}
           >
@@ -86,6 +97,7 @@ const AuthRegister: React.FC = () => {
                         name="email"
                         value={values.email}
                         onIonInput={handleChange}
+                        required
                       ></IonInput>
                     </IonItem>
                   </IonCol>
@@ -134,11 +146,12 @@ const AuthRegister: React.FC = () => {
                         value={values.personalWeatherTrend}
                         onChange={handleChange}
                         name="personalWeatherTrend"
+                        required
                       />
                       <div className="sliderticks">
-                        <span>sweat</span>
-                        <span>feel fine</span>
                         <span>freeze</span>
+                        <span>feel fine</span>
+                        <span>sweat</span>
                       </div>
                     </div>
                   </IonCol>
@@ -153,6 +166,7 @@ const AuthRegister: React.FC = () => {
                         name="password"
                         value={values.password}
                         onIonInput={handleChange}
+                        required
                       ></IonInput>
                     </IonItem>
                   </IonCol>
@@ -177,6 +191,14 @@ const AuthRegister: React.FC = () => {
           </Formik>
         </IonGrid>
       </IonContent>
+      <IonLoading
+        cssClass='my-custom-class'
+        isOpen={showLoading}
+        onDidDismiss={() => setShowLoading(false)}
+        message={"Registering..."}
+        duration={7000}
+        spinner="crescent"
+      />
     </IonPage>
   );
 };

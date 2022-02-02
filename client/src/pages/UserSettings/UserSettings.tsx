@@ -131,9 +131,9 @@ export const Usersettings: FunctionComponent = () => {
                         name="personalWeatherTrend"
                       />
                       <div className="sliderticks">
-                        <span>sweat</span>
-                        <span>feel fine</span>
                         <span>freeze</span>
+                        <span>feel fine</span>
+                        <span>sweat</span>
                       </div>
                     </div>
                   </IonCol>

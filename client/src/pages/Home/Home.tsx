@@ -21,7 +21,7 @@ import { routes } from "utils/routes";
 import { useAtom } from "jotai";
 import { selectAtom } from "utils/state";
 import { routeArray } from "pages/RoutesDirectory/Routesdirectory";
-
+import "./Home.css"
 
 
 const Home: React.FC = () => {
@@ -47,9 +47,10 @@ const Home: React.FC = () => {
         </IonCard>
         <IonGrid>
           <IonRow>
-            <IonCol size="5">
-              <IonImg src="assets/icon/custom/peeps/Robin.png"></IonImg>
-              <IonImg src="assets/icon/custom/backpack.png"></IonImg>
+            <IonCol size="5" style={{marginTop:"12%"}}>
+              <IonImg class="helmet" src="assets/icon/custom/clothesIcons/iconHelmet3.png"></IonImg>
+              <IonImg class="peep" src="assets/icon/custom/peeps/Robin.png"></IonImg>
+              <IonImg class="backpack" src="assets/icon/custom/backpack.png"></IonImg>              
             </IonCol>
             <IonCol>
               <Outfit />

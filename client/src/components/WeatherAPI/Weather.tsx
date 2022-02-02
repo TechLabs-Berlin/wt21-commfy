@@ -5,6 +5,7 @@ import {
   IonRow,
   IonCol,
   IonContent,
+  IonSpinner,
 } from "@ionic/react";
 import { FunctionComponent, } from "react";
 import { useCurrentPosition, useWeather } from "utils/weather";
@@ -27,9 +28,9 @@ export const Weather: FunctionComponent = () => {
 
 
   if (weatherInfo.loading) {
-    return <div> loading Weather Info....</div>;
+    return <div style={{ display: "flex", justifyContent: "center" }}><IonSpinner name="dots"></IonSpinner>Loading Weather Info....<IonSpinner name="dots"></IonSpinner></div>;
   } else if (weatherInfo.data.loading) {
-    return <div> loading Weather Info....</div>;
+    return <div style={{ display: "flex", justifyContent: "center" }}><IonSpinner name="dots"></IonSpinner>loading Weather Info....<IonSpinner name="dots"></IonSpinner></div>;
   } else {
 
     return (

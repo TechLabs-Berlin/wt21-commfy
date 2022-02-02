@@ -1,6 +1,7 @@
-import { IonCard, IonCardContent } from "@ionic/react"
+import { IonCard, IonCardContent, IonSpinner } from "@ionic/react"
 import { useOutfits } from "utils/api"
 import { ClothesIconCreator } from "./clothesIconCreator"
+import "./clothesCreator.css"
 
 
 
@@ -15,7 +16,7 @@ import { ClothesIconCreator } from "./clothesIconCreator"
 export const ClothesItemCreator = (props) => {
 
     const clothesConfig = {
-        
+
         headwear: {
             1: "none",
             2: "headband",
@@ -23,12 +24,12 @@ export const ClothesItemCreator = (props) => {
             4: "cap"
         },
         sunglasses: {
-            0: "none",
-            1: "sunglasses"
+            0: "sunglases",
+            1: "sunglases"
         },
         neck: {
             1: "none",
-            2: "buff",
+            2: "tube",
             3: "scarf"
         },
         singlet: {
@@ -65,14 +66,16 @@ export const ClothesItemCreator = (props) => {
         },
         socks: {
             1: "socks",
-            2: "warmsocks"
+            2: "warmsocks",
+            3: "warmsocks"
         },
         shoes: {
-            1: "low shoes",
+            1: "lowshoes",
             2: "boots",
-            3: "rainproof shoes"
+            3: "rainproofshoes"
         }
     }
+    const backPackConfig = clothesConfig
 
     const { data, loading, error } = useOutfits()
 
@@ -86,23 +89,36 @@ export const ClothesItemCreator = (props) => {
             return ["something went wrong...."]
         }
     }
+
     const clothesRes = clothesConfig[`${props.item}`][clothingItemNow(`${props.item}`)] || "loading..."
 
+    const render = () => {
+        if (clothesRes === "none") {
+            return (
+                <IonCardContent>
+                    <ClothesIconCreator item={"empty"}></ClothesIconCreator>
+                </IonCardContent>
+            )
+        } else if (clothesRes === "loading...") {
+            return (
+                <IonCardContent class="cardcontent">
+                    <IonSpinner name="dots"></IonSpinner>
+                </IonCardContent>
+            )
+        }
+        return (
+            <IonCardContent class="cardcontent">
+                <ClothesIconCreator item={clothesRes}></ClothesIconCreator>
+            </IonCardContent>
+        )
+    }
 
-    if (clothesRes === "none") {
-        return (
-            <IonCard class="bubble">
-                <IonCardContent>
-                    No Item needed
-                </IonCardContent>
-            </IonCard>
-        )
-    } else
-        return (
-            <IonCard class="bubble">
-                <IonCardContent>
-                    <ClothesIconCreator item={clothesRes === "loading..." ? clothesConfig.headwear[3] : clothesRes}></ClothesIconCreator>
-                </IonCardContent>
-            </IonCard>
-        )
+
+    return (
+        <IonCard className="card">
+            {render()}
+        </IonCard>
+    )
+
+
 }

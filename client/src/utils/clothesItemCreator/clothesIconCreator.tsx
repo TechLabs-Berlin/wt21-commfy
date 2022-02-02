@@ -1,4 +1,5 @@
 import { IonImg } from "@ionic/react"
+import "./clothesCreator.css"
 
 export const ClothesIconCreator = (props) => {
 
@@ -6,7 +7,7 @@ export const ClothesIconCreator = (props) => {
 
     if (props.item !== "loading...") {
         return (
-            <IonImg src={url} ></IonImg>
+            <IonImg src={url} class="icon"></IonImg>
         )
     } else {
         return <div>"no image found"</div>

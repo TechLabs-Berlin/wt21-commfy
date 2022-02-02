@@ -1,10 +1,29 @@
-.container {
-  position: absolute;
+.container{
+    margin-top: 28%;
 }
 
-.bubble {
-  display: flex;
-  justify-content: space-evenly;
-  border: 1px solid black;
-  box-sizing: border-box;
+.topRow {
+  margin-top: -15%;
+  margin-bottom: -30%;
+  margin-left: -5%;
+  
+}
+.row2 {
+  margin-top: 10%;
+  margin-bottom: -30%;
+  margin-left: -5%;
+}
+.row3 {
+  margin-top: 10%;
+  margin-left: -5%;
+  margin-bottom: -30%;
+}
+.row4 {
+  margin-top: 10%;
+  margin-bottom: -30%;
+  margin-left: -5%;
+}
+.row5 {
+  margin-top: 43%;
+  margin-left: -5%;
 }
