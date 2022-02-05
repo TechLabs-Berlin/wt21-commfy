@@ -21,3 +21,5 @@ Do you remember our awesome [mid term presentation](https://docs.google.com/pres
 
 ## High fid wireframe
 As time was running, we directly throw ourselves into the [high fid](https://www.figma.com/file/jiG70bLh91OgpRiX5zwE2S/High-fid?node-id=126%3A3346) wireframing, using components of our own little project library. As we were now new members in the "love-user-test-fanclub" we built up a [click-through wireframe](https://www.figma.com/proto/jiG70bLh91OgpRiX5zwE2S/High-fid?node-id=126%3A3347&scaling=scale-down&page-id=126%3A3346&starting-point-node-id=126%3A3347&show-proto-sidebar=1) and - again - went into [user tests](https://docs.google.com/document/d/1-D0B1vlPgGQGz_jvYqBYzv3bz_FkjQI-/edit?usp=sharing&ouid=115864974634270890433&rtpof=true&sd=true) to get the last changes, details and design approved.
+
+Our work was presented at Tech Labs´ [final presentation](https://docs.google.com/presentation/d/17IrjdYrk-PzwQvkXtwUNi4pFmv2IZsXQ/edit?usp=sharing&ouid=115864974634270890433&rtpof=true&sd=true), winter term 2021, at 3rd of February 2022.
