@@ -43,7 +43,7 @@ import { Usersettings } from "pages/UserSettings/UserSettings";
 import { ProfileHome } from "pages/ProfileHome/ProfileHome";
 
 import { Faq } from "pages/Faq/Faq";
-import { Route } from "components/appRouting";
+import { Route } from "components/AppRouting";
 import TodayScheduleHome from "pages/TodayScheduleHome";
 import { Routesdirectory } from "pages/RoutesDirectory/Routesdirectory";
 import Home from "pages/Home/Home";
