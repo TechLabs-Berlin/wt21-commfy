@@ -7,35 +7,35 @@ import {
   IonContent,
   IonSpinner,
 } from "@ionic/react";
-import { FunctionComponent, } from "react";
+import { FunctionComponent } from "react";
 import { useCurrentPosition, useWeather } from "utils/weather";
 import "./Weather.css";
 
 export const Weather: FunctionComponent = () => {
-
-
-
-
   const currentPosition = useCurrentPosition();
   console.log("currentPosition", currentPosition);
 
   const weatherInfo = useWeather(currentPosition);
   console.log("weatherInfo", weatherInfo);
 
-
-
-
-
-
   if (weatherInfo.loading) {
-    return <div style={{ display: "flex", justifyContent: "center" }}><IonSpinner name="dots"></IonSpinner>Loading Weather Info....<IonSpinner name="dots"></IonSpinner></div>;
+    return (
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <IonSpinner name="dots"></IonSpinner>Loading Weather Info....
+        <IonSpinner name="dots"></IonSpinner>
+      </div>
+    );
   } else if (weatherInfo.data.loading) {
-    return <div style={{ display: "flex", justifyContent: "center" }}><IonSpinner name="dots"></IonSpinner>loading Weather Info....<IonSpinner name="dots"></IonSpinner></div>;
+    return (
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <IonSpinner name="dots"></IonSpinner>loading Weather Info....
+        <IonSpinner name="dots"></IonSpinner>
+      </div>
+    );
   } else {
-
     return (
       <IonItem className="current-weather-card">
-        <IonContent>
+        <IonContent className="content-wrapper">
           <IonGrid id="grid-test">
             <IonRow>
               <IonCol size="8">
