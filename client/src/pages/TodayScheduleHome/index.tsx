@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 import {
   IonContent,
@@ -9,7 +9,6 @@ import {
   IonTitle,
   IonIcon,
   IonRow,
-  IonCol,
   IonGrid,
   IonModal,
   IonDatetime,
@@ -18,9 +17,12 @@ import {
 } from "@ionic/react";
 import { add } from "ionicons/icons";
 import { routeArray } from "pages/RoutesDirectory/Routesdirectory";
-import { hardnessAtom, timeAtom } from "utils/state";
+import { timeAtom } from "utils/state";
 import { selectAtom } from "utils/state";
 import { useAtom } from "jotai";
+import { useSchedule } from "utils/firebase";
+import { useAuth } from "reactfire";
+
 
 import "./TodayScheduleHome.css";
 
@@ -30,18 +32,27 @@ const TodayScheduleHome: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [newTime, setNewTime] = useAtom(timeAtom);
   const [isHidden, setIsHidden] = useState(true);
-  const [scheduleArray, setScheduleArray] = useState([]);
+  const [scheduleArrayDisplay, setScheduleArrayDisplay] = useState([]);
   const [_, setSelected] = useAtom(selectAtom);
-  const [__, setHardness] = useAtom(hardnessAtom);
 
-  
-  //For demonstration purposes and to timely meet MVP requirements, the schedule creation is currently limited to the current "session" and disappears with the app refreshing.
-  
-  
-  const newSchedule = (e) => {
-    setScheduleArray([[e], ...scheduleArray].reverse());
+  const id = useAuth().currentUser.uid;
+  const { setSchedule } = useSchedule(id);
+
+
+  const addToSchedule = (e) => {
     setSelected(routeArray.indexOf(e));
-    setHardness(e.props.hardness);
+    setScheduleArrayDisplay([[e], ...scheduleArrayDisplay].reverse());
+    const arr = routeArray[routeArray.indexOf(e)];
+    const schedule = {
+      time: newTime,
+      routes: [{
+        from: arr.props.startingPoint,
+        to: arr.props.destination,
+        hardness: arr.props.hardness,
+        duration: arr.props.duration
+      }]
+    };
+    setSchedule(schedule);
   };
 
 
@@ -55,7 +66,6 @@ const TodayScheduleHome: React.FC = () => {
               {" "}
             </IonIcon>
           </IonButton>
-
           <IonModal
             trigger="trigger-button"
             isOpen={showModal}
@@ -97,57 +107,55 @@ const TodayScheduleHome: React.FC = () => {
                   ></IonDatetime>
                 </IonRow>
               </IonGrid>
-
               <IonItem
                 button
                 lines="none"
-                onClick={() => newSchedule(routeArray[0])}
+                onClick={() => addToSchedule(routeArray[0])}
               >
                 {routeArray[0]}
               </IonItem>
               <IonItem
                 button
                 lines="none"
-                onClick={() => newSchedule(routeArray[1])}
+                onClick={() => addToSchedule(routeArray[1])}
               >
                 {routeArray[1]}
               </IonItem>
               <IonItem
                 button
                 lines="none"
-                onClick={() => newSchedule(routeArray[2])}
+                onClick={() => addToSchedule(routeArray[2])}
               >
                 {routeArray[2]}
               </IonItem>
               <IonItem
                 button
                 lines="none"
-                onClick={() => newSchedule(routeArray[3])}
+                onClick={() => addToSchedule(routeArray[3])}
               >
                 {routeArray[3]}
               </IonItem>
               <IonItem
                 button
                 lines="none"
-                onClick={() => newSchedule(routeArray[4])}
+                onClick={() => addToSchedule(routeArray[4])}
               >
                 {routeArray[4]}
               </IonItem>
               <IonItem
                 button
                 lines="none"
-                onClick={() => newSchedule(routeArray[5])}
+                onClick={() => addToSchedule(routeArray[5])}
               >
                 {routeArray[5]}
               </IonItem>
             </IonContent>
           </IonModal>
-
           <IonIcon slot="icon-only" icon={add}></IonIcon>
           <IonTitle>Today's Schedule</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent hidden={isHidden}>{scheduleArray}</IonContent>
+      <IonContent hidden={isHidden}>{scheduleArrayDisplay}</IonContent>
     </IonPage>
   );
 };

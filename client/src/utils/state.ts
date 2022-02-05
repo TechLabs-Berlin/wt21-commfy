@@ -10,7 +10,7 @@ export const routeAtom = atomWithStorage("route", {} as Route);
 export const selectAtom = atom(NaN);
 export const timeAtom = atom("00:00");
 export const hardnessAtom = atom("normal");
-export const locationAtom = atom("Berlin")
+
 
 
 

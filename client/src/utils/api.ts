@@ -1,6 +1,6 @@
 import { QueryClient, useQuery } from "react-query";
 import { config } from "utils/config";
-import { hardnessAtom, locationAtom, useUserProfile } from "utils/state"
+import { hardnessAtom, useUserProfile } from "utils/state"
 import { useAtom } from "jotai";
 import { useTime } from "./time";
 
@@ -18,8 +18,7 @@ myHeaders.append("Content-Type", "application/json")
 
 export const useOutfits = () => {
 
-  const dateTime = useTime()
-  const [location] = useAtom(locationAtom);
+  const dateTime = useTime();
   const [User] = useUserProfile();
   const [hardness] = useAtom(hardnessAtom);
 
@@ -27,13 +26,13 @@ export const useOutfits = () => {
   const raw = JSON.stringify({
 
     "0": {
-      "location": "Berlin",
+      "location": "Berlin", //hardcoded location, because of unoptimized API input requirements.
       "time": `${dateTime}`,
       "heaviness_of_trip": `${hardness}`,
       "heat_preference": `${User === null ? 0 : User.personalWeatherTrend}`,
       "sex": `${User === null ? "d" : User.gender}`
     },
-    
+
     /*Below is the sample input of multiple schedules, currently not implemented in the client*/
 
     // "1": {

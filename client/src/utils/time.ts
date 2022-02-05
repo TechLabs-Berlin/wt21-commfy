@@ -1,4 +1,4 @@
-
+import { timeAtom } from "./state";
 
 export const useTime = () => {
     const current = new Date();

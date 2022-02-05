@@ -16,10 +16,8 @@ export const useUser = (userId: string) => {
   return { loading: status === "loading", error, data };
 };
 
-// TODO: Make it work with actual schedules
-
 interface Schedule {
-  time: number;
+  time: string;
   routes: any[];
 }
 
@@ -71,7 +69,7 @@ export const useAuthentication = () => {
     };
 
     const response = await fetch(
-      "http://localhost:5001/commfy-dev/us-central1/createUserProfile",
+      "http://localhost:5000/commfy-dev/us-central1/createUserProfile",
       config
     );
 
