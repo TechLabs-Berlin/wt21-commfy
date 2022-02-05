@@ -43,7 +43,7 @@ import { Usersettings } from "pages/UserSettings/UserSettings";
 import { ProfileHome } from "pages/ProfileHome/ProfileHome";
 
 import { Faq } from "pages/Faq/Faq";
-import { Route } from "components/AppRouting";
+import { AppRoute } from "components/AppRoute";
 import TodayScheduleHome from "pages/TodayScheduleHome";
 import { Routesdirectory } from "pages/RoutesDirectory/Routesdirectory";
 import Home from "pages/Home/Home";
@@ -62,31 +62,34 @@ const App: React.FC = () => {
                   {/* Routes Mapping */}
                   <IonRouterOutlet>
                     {/* Auth */}
-                    <Route.Public exact path={`/${routes.auth.login}`}>
+                    <AppRoute.Public exact path={`/${routes.auth.login}`}>
                       <AuthLogin />
-                    </Route.Public>
-                    <Route.Private exact path={`/${routes.today.home}`}>
+                    </AppRoute.Public>
+                    <AppRoute.Private exact path={`/${routes.today.home}`}>
                       <TodayScheduleHome />
-                    </Route.Private>
-                    <Route.Public exact path={`/${routes.auth.register}`}>
+                    </AppRoute.Private>
+                    <AppRoute.Public exact path={`/${routes.auth.register}`}>
                       <AuthRegister />
-                    </Route.Public>
-                    <Route.Public exact path={`/${routes.home}`}>
+                    </AppRoute.Public>
+                    <AppRoute.Public exact path={`/${routes.home}`}>
                       <Home />
-                    </Route.Public>
+                    </AppRoute.Public>
                     {/* Profile */}
-                    <Route.Private exact path={`/${routes.profile.routes}`}>
+                    <AppRoute.Private exact path={`/${routes.profile.routes}`}>
                       <Routesdirectory />
-                    </Route.Private>
-                    <Route.Private exact path={`/${routes.profile.faq}`}>
+                    </AppRoute.Private>
+                    <AppRoute.Private exact path={`/${routes.profile.faq}`}>
                       <Faq />
-                    </Route.Private>
-                    <Route.Private exact path={`/${routes.profile.home}`}>
+                    </AppRoute.Private>
+                    <AppRoute.Private exact path={`/${routes.profile.home}`}>
                       <ProfileHome />
-                    </Route.Private>
-                    <Route.Private exact path={`/${routes.profile.settings}`}>
+                    </AppRoute.Private>
+                    <AppRoute.Private
+                      exact
+                      path={`/${routes.profile.settings}`}
+                    >
                       <Usersettings />
-                    </Route.Private>
+                    </AppRoute.Private>
                   </IonRouterOutlet>
                   {/* Tabs */}
                   <IonTabBar slot="bottom">

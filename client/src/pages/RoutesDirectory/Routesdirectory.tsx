@@ -25,7 +25,7 @@ import { useRoute } from "utils/state";
 
 import { routes } from "utils/routes";
 
-import RouteCardCreator from "components/RouteCardCreator/routeCardCreator";
+import RouteCardCreator from "components/RouteCardCreator";
 
 import "./Routesdirectory.css";
 
