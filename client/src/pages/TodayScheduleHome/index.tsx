@@ -31,15 +31,17 @@ const TodayScheduleHome: React.FC = () => {
   const [newTime, setNewTime] = useAtom(timeAtom);
   const [isHidden, setIsHidden] = useState(true);
   const [scheduleArray, setScheduleArray] = useState([]);
-  const [selected, setSelected] = useAtom(selectAtom);
-  const [hardness, setHardness] = useAtom(hardnessAtom)
+  const [_, setSelected] = useAtom(selectAtom);
+  const [__, setHardness] = useAtom(hardnessAtom);
 
+  
+  //For demonstration purposes and to timely meet MVP requirements, the schedule creation is currently limited to the current "session" and disappears with the app refreshing.
+  
+  
   const newSchedule = (e) => {
     setScheduleArray([[e], ...scheduleArray].reverse());
-    setSelected(routeArray.indexOf(e))
-    setHardness(e.props.hardness)
-
-
+    setSelected(routeArray.indexOf(e));
+    setHardness(e.props.hardness);
   };
 
 

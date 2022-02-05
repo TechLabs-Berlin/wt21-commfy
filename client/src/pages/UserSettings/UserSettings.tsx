@@ -38,7 +38,7 @@ export const Usersettings: FunctionComponent = () => {
   ) => {
     await update(values);
     setSubmitting(false);
-    redirect(routes.profile.home)
+    redirect(routes.profile.home);
   };
 
 
@@ -63,27 +63,12 @@ export const Usersettings: FunctionComponent = () => {
         <IonGrid className="grid-settings">
           <Formik initialValues={user} onSubmit={onSubmit}>
             {({
-              values,
-              // errors,
-              // touched,
-              // isSubmitting,
+              values,          
               handleChange,
               handleSubmit,
             }) => (
               <form onSubmit={handleSubmit}>
-                {/* <IonRow>
-                    <IonCol>
-                      <IonAlert
-                        isOpen={}
-                        onDidDismiss={}
-                        header={"Error!"}
-                        message={message}
-                        buttons={["Dismiss"]}
-                      />
-                    </IonCol>
-                  </IonRow> */}
-
-
+                
                 <IonRow style={{ marginTop: "20px" }}>
                   <IonCol>
                     <IonItem>

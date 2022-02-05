@@ -3,5 +3,4 @@ export interface Route {
     destination: string;
     hardness: string;
     duration: string;
-
 }

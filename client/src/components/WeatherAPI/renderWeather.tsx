@@ -18,17 +18,10 @@ export const Weather: FunctionComponent = () => {
   const weatherInfo = useWeather(currentPosition);
   console.log("weatherInfo", weatherInfo);
 
-  if (weatherInfo.loading) {
+  if (weatherInfo.loading || weatherInfo.data.loading) {
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>
         <IonSpinner name="dots"></IonSpinner>Loading Weather Info....
-        <IonSpinner name="dots"></IonSpinner>
-      </div>
-    );
-  } else if (weatherInfo.data.loading) {
-    return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <IonSpinner name="dots"></IonSpinner>loading Weather Info....
         <IonSpinner name="dots"></IonSpinner>
       </div>
     );

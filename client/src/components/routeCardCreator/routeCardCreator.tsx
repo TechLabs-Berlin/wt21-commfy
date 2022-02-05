@@ -16,12 +16,17 @@ import {
 } from "@ionic/react";
 import "./style.css";
 import { useAtom } from "jotai";
+import { useState } from "react";
+
 
 const RouteCardCreator = (props: Route) => {
+
   const [time] = useAtom(timeAtom);
+  const [isHidden, setIsHidden] = useState(false) 
+  // isHidden hook acts as a visual placeholder for a delete function that would have been implemented at a later stage with more backend integration.
 
   return (
-    <IonItemSliding>
+    <IonItemSliding hidden={isHidden}>
       <IonItem className="item-wrapper">
         <IonLabel className="label-wrapper">
           <IonCard>
@@ -57,7 +62,7 @@ const RouteCardCreator = (props: Route) => {
         </IonLabel>
       </IonItem>
       <IonItemOptions>
-        <IonItemOption color="danger" onClick={() => console.log("clicked")}>
+        <IonItemOption color="danger" onClick={() => setIsHidden(true)}>
           <IonIcon slot="end" icon={trash} size="large" />
         </IonItemOption>
       </IonItemOptions>
