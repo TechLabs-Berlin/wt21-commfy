@@ -42,7 +42,7 @@ Since it was assumed among the project team that _Commfy_ would be used on the s
 The backend part was implemented with Google’s Firebase. On the one hand, Firebase is used to enable the authentication of users. On the other hand, Firestore, a document based database and part of Firebase, helps storing user data such as mail address, user preferences or routes. To support form handling e.g. for the signup and registration flow, the library Formik was integrated. For state management, React Query and Jotai are in place. There are two APIs implemented, OpenWeatherAPI to display the current weather data as well as the DS’s API providing an outfit recommendation. To be able to use the APIs, CORSmiddleware from the CORS library is used which intercepts the API requests and creates / changes the header of the response.
 
 The process is illustrated below. It should also be mentioned that the tasks were not always worked on one after the other, but that work was often done in parallel on different challenges, i.e. a back and forth.<br><br>
-![Process WD](./WDProcess.png)
+![Process WD](./process_WD.png)
 
 ###### _Process Web Dev_<br><br>
 
@@ -55,13 +55,10 @@ The preparatory work consisted of understanding the business problem and convert
 ### Output data <br><br>
 ![Output data](./dummy.png)
 
-###### _Output data_
-<br>
-
+###### _Output data_<br><br>
 ### Input data <br><br>
 ![Input data](./dummy.png)
-###### _Input data_
-<br>
+###### _Input data_<br><br>
 
 ### Rule-based model
  
@@ -79,59 +76,72 @@ This exercise helped us effectively lay out the clothing options, which served a
 We generated fifteen different weather scenarios and trip situations (combination of six features) for hot, warm, breezy, and cold seasons to ask a user to fill in this table with clothing pieces that s/he would pick for given weather conditions. We compared a user’s clothing selections with clothing recommendations from a rule-based model and scored 72%, slightly exceeding the benchmark by 2% on a validation set of 15 weather and trip situations. Afterward, we provided a user with clothing predictions from the rule-based model to evaluate the recommendations on a scale of ‘way too cold’, ‘a little too cold’, ‘just right’, ‘a little too hot’, ‘way too hot’. The successful model achieved a perfect clothing feedback score of above 71% of app uses (still needs to be conducted).
 
 ***Deployment of the model with Flask API on PythonAnywhere***<br>
-We wanted our model to be available for the web development team so that they can build a Commfy application using it. For this, we built [Flask API](https://github.com/TechLabs-Berlin/wt21-commfy/blob/main/DS_Files/Flask_api.py) and hosted it live on PythonAnywhere (server).
+We wanted our model to be available for the web development team so that they can build a Commfy application using it. For this, we built [Flask API](https://github.com/TechLabs-Berlin/wt21-commfy/blob/main/DS_Files/Flask_api.py) and hosted it live on PythonAnywhere (server). It is deployed [here](https://flogreenie.pythonanywhere.com/)
 
 ### Predictive ML model for feet items  
 ***Laying out the groundwork for machine learning project***<br>
-We provided relevant data points to our mentor for data collection, derived from the tables on input and output data used for the rule-based model. Our mentor prepared the dataset with user and feature data and the user’s clothing choices. Simultaneously, the DS team created a general structure of the machine learning workbook and brainstormed on evaluation methods. After receiving the dataset, we conducted the initial investigation on data to understand the dataset better. Subsequently, we cleaned and shaped the data for summary statistics and graphical representations. 
+We provided relevant data points to our mentor for data collection, derived from the tables on input and output data used for the rule-based model. Our mentor prepared the dataset with user and feature data and the user’s clothing choices. Simultaneously, the DS team created a general structure of the machine learning workbook and brainstormed on evaluation methods. After receiving the dataset, we conducted the initial investigation on data to understand the dataset better. Subsequently, we cleaned and shaped the data for summary statistics and graphical representations. <br><br>
+![Input data](./dummy.png)
 
-
-
+###### _Temperature_<br><br>
 
  
 ***Model training and evaluation***<br>
 After getting familiar with the essential characteristics of data, we proceeded with model training. We fed the ML algorithms with data to help identify and learn good values of all attributes involved in this stage. We trained data with K-Nearest Neighbors Classification, and Decision Tree Classification.
 
-***KNN*** – the main hyperparameter we optimized is the number of neighbors. As it is displayed in the chart, the quality of prediction decreases with the increase of the number of neighbors. Notwithstanding, the prediction score is above 95% outscoring the benchmark of 70% predominantly. 
-            
-***Decision-tree*** – we tried different approaches to optimize the hyperparameters of the decision tree algorithm: one with just by iterating through the max depth of the tree. 
-The chart below shows that from a depth of 4 the accuracy jumps up to almost 100%.
-With this observation, we understood  that temperature and weather states  are the most important features for the decision tree model.
+***KNN*** – the main hyperparameter we optimized is the number of neighbors. As it is displayed in the chart, the quality of prediction decreases with the increase of the number of neighbors. Notwithstanding, the prediction score is above 95% outscoring the benchmark of 70% predominantly.<br><br>
+![k-neighbors](./k_neighbors.png)
 
-The following is the diagram of decision tree logic with the computation of the gini impurity for each of the splits:
+ ###### _k-neighbors_<br><br>
+            
+***Decision-tree*** – we tried different approaches to optimize the hyper-parameters of the decision tree algorithm: one with iterating through the maximum depth of the tree. 
+The chart below shows that from a depth of 4 the accuracy jumps up to almost 100%.<br><br>
+![max depth](./max_depth.png)
+###### _max depth_<br><br>
+
+With this observation, we understood that the ‘temperature’ and ‘weather states’  are the most important features for the decision tree model.
+
+The following is the diagram of decision tree logic with the computation of the gini-impurity score for each of the splits:<br><br>
+![tree ml](./tree_ml.png)
+
+###### _tree ml_<br><br>
 
 The more credible approach of hyper-parameter optimization is to iterate through the hyper-parameters with a cross validation method. For this approach, we picked  the following parameters for optimisation:
+<code>
+<br><br>
+parameters={<br>"splitter":["best","random"],<br>
+        "max_depth" : [1,2,3,4,5],<br>
+        "min_samples_leaf":[1,2,3,4,5],<br>
+        "min_weight_fraction_leaf":[0.1,0.2,0.3,0.4,0.5],<br>
+        "max_features":["auto","sqrt",None],<br>
+        "max_leaf_nodes":[None,10,20,30,40] <br>}<br><br>
+</code>
+The best set of hyper-parameters out of all tried is this:
+<code>
+<br><br>
+{'max_depth': 5,<br>
+ 'max_features': None,<br>
+ 'max_leaf_nodes': 20,<br>
+ 'min_samples_leaf': 4,<br>
+ 'min_weight_fraction_leaf': 0.1,<br>
+ 'splitter': 'random'}<br><br>
+</code>
 
-parameters={"splitter":["best","random"],
-        "max_depth" : [1,2,3,4,5],
-        "min_samples_leaf":[1,2,3,4,5],
-        "min_weight_fraction_leaf":[0.1,0.2,0.3,0.4,0.5],
-        "max_features":["auto","sqrt",None],
-        "max_leaf_nodes":[None,10,20,30,40] }
-
-The best set of hyper-parameters out of all tried for decision tree model is this:
-{'max_depth': 5,
- 'max_features': None,
- 'max_leaf_nodes': 20,
- 'min_samples_leaf': 4,
- 'min_weight_fraction_leaf': 0.1,
- 'splitter': 'random'}:
-
-The decision tree model with this set of parameters  scored  almost 60% subsceeding the benchmark for 10%. To increase the accuracy of prediction, further work on hyperparameter optimization is necessary.  
+The decision tree model with this set of parameters  scored  almost 60% subsceeding the benchmark for 10%.  Therefore, further work on hyperparameter optimization is necessary  to increase the accuracy of prediction.
 
 ### DS toolkit:
-Python (scikit learn, pandas, numpy, matplotlib, seaborn) - programming
-CLI - mean of interaction
-Git & GitHub - version control
-Config file (requirements.txt) & virtual environment -  for preventing version conflicts
-Jupyter Notebook
-VS.Code - integrated development environment
-Flask App - API
+* Python (scikit learn, pandas, numpy, matplotlib, seaborn) - programming
+* CLI - mean of interaction
+* Git & GitHub - version control
+* Requirements.txt & virtual environment -  dependency management and isolation
+* Jupyter Notebook - human-readable documents with executable codes
+* VS.Code - integrated development environment
+* Flask App - API
+* Cloud Server: PythonAnywhere
 
-We served API via Flask API on PythonAnywhere
-
-Way forward (outside of the frame of the project phase) 
-Deployment of ML models with Flask API?
-Building automated pipeline from local machine → github(wh) → pythonanywhere for continuous integration and -deployment
+### Way forward 
+* Hyper-parameter optimisation
+* Deployment of ML models with Flask API on PythonAnywhere
+* CI &CD via  local→github→pythonanywhere
 
 <br><br>We are happy to have managed a project of this scope as a team. We learned a lot and had a good time together!
