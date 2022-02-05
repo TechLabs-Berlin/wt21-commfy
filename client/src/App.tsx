@@ -42,8 +42,8 @@ import AuthRegister from "pages/AuthRegister/AuthRegister";
 import { Usersettings } from "pages/UserSettings/UserSettings";
 import { ProfileHome } from "pages/ProfileHome/ProfileHome";
 
-import { Faq } from "pages/Faq";
-import { Route } from "components/Route";
+import { Faq } from "pages/Faq/Faq";
+import { Route } from "components/appRouting";
 import TodayScheduleHome from "pages/TodayScheduleHome";
 import { Routesdirectory } from "pages/RoutesDirectory/Routesdirectory";
 import Home from "pages/Home/Home";

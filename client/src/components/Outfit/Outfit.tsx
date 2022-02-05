@@ -1,6 +1,6 @@
 import { IonGrid, IonRow, IonCol } from "@ionic/react";
 import { FunctionComponent } from "react";
-import { ClothesItemCreator } from "utils/clothesItemCreator/clothesItemCreator";
+import { ClothesItemCreator } from "components/clothesItemCreator/clothesItemCreator";
 import "./Outfit.css"
 
 

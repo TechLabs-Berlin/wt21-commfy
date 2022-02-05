@@ -25,48 +25,57 @@ import { useRoute } from "utils/state";
 
 import { routes } from "utils/routes";
 
-import RouteCardCreator from "utils/routeCardCreator/routeCardCreator";
+import RouteCardCreator from "components/routeCardCreator/routeCardCreator";
 
 import "./Routesdirectory.css";
 
 export const routeArray = [
   <RouteCardCreator
+    key={1}
     startingPoint="Home"
     destination="Work"
     hardness="heavy"
     duration="35"
   />,
   <RouteCardCreator
+    key={2}
     startingPoint="Work"
     destination="Home"
     hardness="heavy"
     duration="35"
   />,
   <RouteCardCreator
+    key={3}
     startingPoint="Home"
     destination="Grocery"
     hardness="normal"
     duration="10"
   />,
   <RouteCardCreator
+    key={4}
     startingPoint="Home"
     destination="Granny"
     hardness="normal"
     duration="15"
   />,
   <RouteCardCreator
+    key={5}
     startingPoint="Granny"
     destination="Home"
     hardness="normal"
     duration="15"
   />,
   <RouteCardCreator
+    key={6}
     startingPoint="Home"
     destination="Gym"
     hardness="heavy"
     duration="35"
   />,
 ];
+
+// Routesdirectory component is the archetype functionality of creating new biking routes.
+// To reduce complexity, the MVP only features predefined routes in a route array, so at this stage the adding routes functionality in the modal does not render results.
 
 const Routesdirectory: React.FC = () => {
   const { redirect } = useRedirect();
@@ -168,7 +177,6 @@ const Routesdirectory: React.FC = () => {
             </IonGrid>
           </IonContent>
         </IonModal>
-
         {routeArray}
       </IonContent>
     </IonPage>
