@@ -16,6 +16,27 @@ export const useUser = (userId: string) => {
   return { loading: status === "loading", error, data };
 };
 
+// TODO: Make it work with actual schedules
+
+interface Schedule {
+  time: number;
+  routes: any[];
+}
+
+export const useSchedule = (id: string) => {
+  const firestore = useFirestore();
+  const userData = useUser(id);
+
+  console.log("userData", userData);
+
+  const setSchedule = async (newSchedule: Schedule) => {
+    const userRef = doc(firestore, FirebaseCollections.users, id);
+    setDoc(userRef, { ...userData.data, schedule: newSchedule });
+  };
+
+  return { setSchedule };
+};
+
 export const useAuthentication = () => {
   const auth = useAuth();
   const firestore = useFirestore();
