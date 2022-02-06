@@ -8,24 +8,18 @@ import {
   IonLabel,
   IonInput,
   IonButton,
-  IonIcon,
 } from "@ionic/react";
 import React from "react";
 import { IonGrid, IonRow, IonCol } from "@ionic/react";
-import { personCircle } from "ionicons/icons";
 import { Formik, FormikConfig } from "formik";
 import { useAuthentication } from "utils/firebase";
 import { routes } from "utils/routes";
 import { useRedirect } from "utils/redirect";
-
 import "./AuthLogin.css";
 
 const AuthLogin: React.FC = () => {
   const { signIn } = useAuthentication();
   const { redirect } = useRedirect();
-
-  // const username = "matheus@gmail.com";
-  // const pass = "12345678";
 
   const onSubmit: FormikConfig<any>["onSubmit"] = async (
     values,
@@ -52,24 +46,10 @@ const AuthLogin: React.FC = () => {
           >
             {({
               values,
-              // errors,
-              // touched,
-              // isSubmitting,
               handleChange,
               handleSubmit,
             }) => (
               <form onSubmit={handleSubmit}>
-                {/* <IonRow>
-                  <IonCol>
-                    <IonAlert
-                      isOpen={}
-                      onDidDismiss={}
-                      header={"Error!"}
-                      message={message}
-                      buttons={["Dismiss"]}
-                    />
-                  </IonCol>
-                </IonRow> */}
                 <h1>Let's log you in.</h1>
                 <p>
                   Welcome back. <br></br>You have been missed!

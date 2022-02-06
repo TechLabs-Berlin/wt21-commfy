@@ -7,7 +7,7 @@ import { User, UserRegistrationPayload } from "types/User";
 
 export enum FirebaseCollections {
   users = "users",
-}
+};
 
 export const useUser = (userId: string) => {
   const userRef = doc(useFirestore(), FirebaseCollections.users, userId);
@@ -19,7 +19,7 @@ export const useUser = (userId: string) => {
 interface Schedule {
   time: string;
   routes: any[];
-}
+};
 
 export const useSchedule = (id: string) => {
   const firestore = useFirestore();

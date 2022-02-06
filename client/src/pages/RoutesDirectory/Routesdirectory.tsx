@@ -1,7 +1,6 @@
 import { useUserProfile } from "utils/state";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { bicycle, add, chevronBack } from "ionicons/icons";
-
 import {
   IonContent,
   IonItem,
@@ -22,11 +21,8 @@ import {
 } from "@ionic/react";
 import { useRedirect } from "utils/redirect";
 import { useRoute } from "utils/state";
-
 import { routes } from "utils/routes";
-
 import RouteCardCreator from "components/RouteCardCreator";
-
 import "./Routesdirectory.css";
 
 export const routeArray = [
@@ -71,7 +67,7 @@ export const routeArray = [
     destination="Gym"
     hardness="heavy"
     duration="35"
-  />,
+  />
 ];
 
 // Routesdirectory component is the archetype functionality of creating new biking routes.

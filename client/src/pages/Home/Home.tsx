@@ -13,7 +13,6 @@ import {
   IonCol,
   IonImg,
 } from "@ionic/react";
-
 import { Weather } from "components/Weather";
 import { Outfit } from "components/Outfit/Outfit";
 import { useOutfits } from "utils/api";
@@ -28,7 +27,6 @@ const Home: React.FC = () => {
   const { data, loading } = useOutfits();
   const [selected] = useAtom(selectAtom);
   useOutfits();
-
   console.log(data, loading);
   const { redirect } = useRedirect();
 

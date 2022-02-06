@@ -1,10 +1,9 @@
 import { useUserProfile } from "utils/state";
 import { useRedirect } from "utils/redirect";
 import { routes } from "utils/routes";
-import React, { useRef } from "react";
+import React from "react";
 import "./Faq.css";
 import { chevronBack, add } from "ionicons/icons";
-
 import {
   IonContent,
   IonAccordionGroup,
@@ -22,7 +21,6 @@ import {
 } from "@ionic/react";
 
 const Faq: React.FC = () => {
-  const accordionGroupRef = useRef(null);
   const { redirect } = useRedirect();
   const [user] = useUserProfile();
   console.log("user", user);

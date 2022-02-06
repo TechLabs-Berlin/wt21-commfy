@@ -2,7 +2,7 @@ export interface User {
   email: string;
   gender: string;
   nickname: string;
-  personalWeatherTrend: number;
+  personalWeatherTrend: number;  
 }
 
 export interface UserRegistrationPayload extends User {

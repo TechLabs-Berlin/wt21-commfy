@@ -1,14 +1,13 @@
-.container{
-    margin-top: 28%;
+.container {
+  margin-top: 28%;
 }
 
 .topRow {
   margin-top: -15%;
   margin-bottom: -30%;
   margin-left: -5%;
-  
 }
-.row2 {
+.row2,.row4 {
   margin-top: 10%;
   margin-bottom: -30%;
   margin-left: -5%;
@@ -17,11 +16,6 @@
   margin-top: 10%;
   margin-left: -5%;
   margin-bottom: -30%;
-}
-.row4 {
-  margin-top: 10%;
-  margin-bottom: -30%;
-  margin-left: -5%;
 }
 .row5 {
   margin-top: 43%;

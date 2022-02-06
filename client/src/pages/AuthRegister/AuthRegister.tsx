@@ -22,7 +22,6 @@ import { useAuthentication } from "utils/firebase";
 import { useRedirect } from "utils/redirect";
 import { routes } from "utils/routes";
 import { UserRegistrationPayload } from "types/User";
-
 import "./AuthRegister.css";
 
 const AuthRegister: React.FC = () => {
@@ -30,9 +29,6 @@ const AuthRegister: React.FC = () => {
   const [showLoading, setShowLoading] = useState(false);
   const { signUp } = useAuthentication();
   const { redirect } = useRedirect();
-
-
-
 
 
   const onSubmit: FormikConfig<UserRegistrationPayload>["onSubmit"] = async (
@@ -46,7 +42,6 @@ const AuthRegister: React.FC = () => {
     setSubmitting(false);
     redirect(routes.home);
     setShowLoading(false)
-
   };
 
   return (
@@ -64,30 +59,16 @@ const AuthRegister: React.FC = () => {
               password: "",
               nickname: "",
               gender: "d",
-              personalWeatherTrend: 0,
+              personalWeatherTrend: 0,              
             }}
             onSubmit={onSubmit}
           >
             {({
-              values,
-              // errors,
-              // touched,
-              // isSubmitting,
+              values,         
               handleChange,
               handleSubmit,
             }) => (
-              <form onSubmit={handleSubmit}>
-                {/* <IonRow>
-                    <IonCol>
-                      <IonAlert
-                        isOpen={}
-                        onDidDismiss={}
-                        header={"Error!"}
-                        message={message}
-                        buttons={["Dismiss"]}
-                      />
-                    </IonCol>
-                  </IonRow> */}
+              <form onSubmit={handleSubmit}>             
                 <IonRow>
                   <IonCol>
                     <IonItem className="item-email">
