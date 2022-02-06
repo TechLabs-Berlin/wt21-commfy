@@ -63,10 +63,8 @@ Zsh/Bash → install packages & versions with pip install requirements.txt
 Create an account with https://openweathermap.org and get your api key
 Create a config.py in the working directory with api_key = ' your_api_key'
 
-
 ### Flask API Deployment on PythonAnywhere
 Create an account on pythonanywhere
 Create a directory with flask_api.py
 Open a bash console on pythonanywhere
     pip install requirements.txt 
-
