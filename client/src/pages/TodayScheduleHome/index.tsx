@@ -21,7 +21,7 @@ import { timeAtom } from "utils/state";
 import { selectAtom } from "utils/state";
 import { useAtom } from "jotai";
 import { useSchedule } from "utils/firebase";
-import { useAuth } from "reactfire";
+import { useUserProfile } from "utils/state";
 
 
 import "./TodayScheduleHome.css";
@@ -34,8 +34,9 @@ const TodayScheduleHome: React.FC = () => {
   const [isHidden, setIsHidden] = useState(true);
   const [scheduleArrayDisplay, setScheduleArrayDisplay] = useState([]);
   const [_, setSelected] = useAtom(selectAtom);
+  const [user] = useUserProfile()
 
-  const id = useAuth().currentUser.uid;
+  const id = user.NO_ID_FIELD
   const { setSchedule } = useSchedule(id);
 
 
