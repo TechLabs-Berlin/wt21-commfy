@@ -2,7 +2,7 @@ import { IonGrid, IonRow, IonCol } from "@ionic/react";
 import { FunctionComponent } from "react";
 import { ClothesItemCreator } from "components/OutfitCreator/clothesItemCreator";
 import "./Outfit.css";
-import { BackPackItem } from "components/OutfitCreator/backPackItemCreator";
+import { BackPackItem } from "components/OutfitCreator/backPackItemCreator"; //unused import left for demonstrative purposes
 
 
 

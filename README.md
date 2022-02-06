@@ -56,7 +56,7 @@ Run Firebase
 ```
 firebase serve
 ```
-The App is optimized for iOS / iPhone 12 Pro (Simulation of mobile version on Chrome: Open DevTools by pressing F12 > Choose iPhone 12 Pro in the Toogle Device Toolbar).
+The App experience is optimized for **iOS / iPhone 12 Pro** (Simulation of mobile version on Chrome: Open DevTools by pressing F12 > Choose iPhone 12 Pro in the Toogle Device Toolbar).
  
 ### Rule-based model jupyter notebook:
 * navigate to recommendation_API/rule-based_model
