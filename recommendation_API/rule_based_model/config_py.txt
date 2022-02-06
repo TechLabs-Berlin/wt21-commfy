@@ -1,0 +1,4 @@
+1. Create an account and open your API key from openweathermap.org 
+2. Create a python Gile with the name 'config.py 
+3. Assign your api key to a variable: api_key = 'your_openweathermap_api_key'
+4. Import config.py to the workbook on rule-based model.

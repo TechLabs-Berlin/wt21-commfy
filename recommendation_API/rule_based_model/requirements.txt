@@ -1,0 +1,9 @@
+pip install Flask
+pip install pandas
+pip install requests
+pip install datetime
+pip install pytz
+pip install -U flask-cors
+pip install matplot
+pip install seaborn
+pip install numpy
