@@ -1,0 +1,5 @@
+pip install pandas
+pip install matplot
+pip install seaborn
+pip install numpy
+pip install scikit-learn
