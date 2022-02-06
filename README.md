@@ -59,13 +59,21 @@ firebase serve
 The App is optimized for iOS / iPhone 12 Pro (Simulation of mobile version on Chrome: Open DevTools by pressing F12 > Choose iPhone 12 Pro in the Toogle Device Toolbar).
  
 ### Prerequisites for running Jupyter Notebooks
-Zsh/Bash → install packages & versions with pip install requirements.txt
-(have the requirements.txt in your working directory) 
-Create an account with https://openweathermap.org and get your api key
-Create a config.py in the working directory with api_key = ' your_api_key'
+* Zsh/Bash → install packages & versions with: 
+```
+pip install requirements.txt
+```
+* Create an account with https://openweathermap.org and get your api key
+* Create a config.py in the working directory with api_key = ' your_api_key'
 
 ### Flask API Deployment on PythonAnywhere
-Create an account on pythonanywhere
-Create a directory with flask_api.py
-Open a bash console on pythonanywhere
-    pip install requirements.txt 
+* Create an account on pythonanywhere
+* Create a directory with flask_api.py
+* Open a bash console on pythonanywhere
+```
+pip install requirements.txt 
+```
+* Configure WSGI configuration to serve up the web application at http://<your-username>.pythonanywhere.com/
+* Set the variable 'application' to a WSGI handler - ‘Flask_api’ for this project
+* Add your project directory on pythonanywhere to the sys.path 
+* Reload the web application (http://<your-username>.pythonanywhere.com/)
