@@ -1,6 +1,6 @@
 import { QueryClient, useQuery } from "react-query";
 import { config } from "utils/config";
-import { hardnessAtom, useUserProfile } from "utils/state"
+import { hardnessAtom, useUserProfile } from "utils/state";
 import { useAtom } from "jotai";
 import { useTime } from "./time";
 
@@ -10,11 +10,9 @@ export const apiClient = new QueryClient();
 export enum APIEndpoints {
   outfits_all = "outfits",
   recommendations = "recommendation"
-}
+};
 const myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json")
-
-
+myHeaders.append("Content-Type", "application/json");
 
 export const useOutfits = () => {
 

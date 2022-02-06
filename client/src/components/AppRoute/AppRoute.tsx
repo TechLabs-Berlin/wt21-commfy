@@ -1,13 +1,11 @@
-import { FunctionComponent, useEffect } from "react";
+import { FunctionComponent } from "react";
 import { Route as RouterRoute, Redirect, RouteProps } from "react-router-dom";
 import { useUserProfile } from "utils/state";
 import { routes } from "utils/routes";
-import { useAtom } from "jotai";
 
 const PrivateRoute: FunctionComponent<RouteProps> = (props) => {
   const { children, ...otherProps } = props;
   const [user] = useUserProfile();
-
   const loggedIn = user !== null;
 
   return (

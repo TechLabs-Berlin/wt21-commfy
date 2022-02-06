@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import {
   IonContent,
   IonPage,
@@ -21,24 +20,21 @@ import { timeAtom } from "utils/state";
 import { selectAtom } from "utils/state";
 import { useAtom } from "jotai";
 import { useSchedule } from "utils/firebase";
-import { useUserProfile } from "utils/state";
-
-
+import { useAuth } from "reactfire";
 import "./TodayScheduleHome.css";
 
 
 
 const TodayScheduleHome: React.FC = () => {
+
   const [showModal, setShowModal] = useState(false);
   const [newTime, setNewTime] = useAtom(timeAtom);
   const [isHidden, setIsHidden] = useState(true);
-  const [scheduleArrayDisplay, setScheduleArrayDisplay] = useState([]);
+  const [scheduleArrayDisplay, setScheduleArrayDisplay] = useState([]); //currently a visual placeholder until permanent solution for allowing persistent visual change to profile
   const [_, setSelected] = useAtom(selectAtom);
-  const [user] = useUserProfile()
-
-  const id = user.NO_ID_FIELD
-  const { setSchedule } = useSchedule(id);
-
+  const [id] = useState("xDsoxvNLvzN3Gf02TTgpq5PRENY2"); //fallback ID to "fallback" profile on firebase to avoid initial rendering error
+  const user = useAuth().currentUser;
+  const { setSchedule } = useSchedule(user === null ? id : user.uid);
 
   const addToSchedule = (e) => {
     setSelected(routeArray.indexOf(e));
@@ -55,8 +51,6 @@ const TodayScheduleHome: React.FC = () => {
     };
     setSchedule(schedule);
   };
-
-
 
   return (
     <IonPage>

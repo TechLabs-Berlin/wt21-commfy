@@ -1,16 +1,15 @@
-import { IonCard, IonCardContent, IonSpinner } from "@ionic/react"
-import { useOutfits } from "utils/api"
-import { backpackConfig } from "./outfitConfig"
-import { ClothesIconCreator } from "./clothesIconCreator"
+import { IonCard, IonCardContent, IonSpinner } from "@ionic/react";
+import { useOutfits } from "utils/api";
+import { backpackConfig } from "./outfitConfig";
+import { ClothesIconCreator } from "./clothesIconCreator";
 
-/*Due to the volatility of the API result for the "backpack" and the therein lying difficulty to implement,
-this BackPackItem component is currently unused and instead replaced with the clothesItemCreator in Outfit.tsx
+/* !!!! Due to the volatility of the API result for the "backpack" and the therein lying difficulty to implement,
+this BackPackItem component prototype is currently UNUSED and instead replaced with the clothesItemCreator in Outfit.tsx
 */
 
 
 export const BackPackItem = (props) => {
-
-    const { data, loading, error } = useOutfits()
+    const { data, loading } = useOutfits()
 
     const backPackItem = (item) => {
         if (loading === true) {
@@ -19,19 +18,18 @@ export const BackPackItem = (props) => {
             return data.clothes.backpack[1][0][`${item}`]
         } else {
             return ["something went wrong...."]
-        }
-    }
-    const backPackRes = backpackConfig[`${props.category}`][backPackItem(`${props.item}`)] || "loading..."
-    
-    
-    
+        };
+    };
+
+    const backPackRes = backpackConfig[`${props.category}`][backPackItem(`${props.item}`)] || "loading...";
+
     const render = () => {
         if (backPackRes === "none") {
             return (
                 <IonCardContent>
                     <ClothesIconCreator item={"empty"}></ClothesIconCreator>
                 </IonCardContent>
-            )
+            );
         } else if (backPackRes === "loading...") {
             return (
                 <IonCardContent class="cardcontent">
@@ -43,12 +41,12 @@ export const BackPackItem = (props) => {
             <IonCardContent class="cardcontent">
                 <ClothesIconCreator item={backPackRes}></ClothesIconCreator>
             </IonCardContent>
-        )
-    }
+        );
+    };
 
     return (
         <IonCard className="card">
             {render()}
         </IonCard>
-    )
-}
+    );
+};

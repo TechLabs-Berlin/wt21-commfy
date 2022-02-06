@@ -1,15 +1,13 @@
 import { IonGrid, IonRow, IonCol } from "@ionic/react";
 import { FunctionComponent } from "react";
 import { ClothesItemCreator } from "components/OutfitCreator/clothesItemCreator";
-import "./Outfit.css"
+import "./Outfit.css";
 import { BackPackItem } from "components/OutfitCreator/backPackItemCreator";
 
 
 
 
 export const Outfit: FunctionComponent = () => {
-
-
     return (
         <IonGrid class="container">
             <IonRow class="topRow">
@@ -60,8 +58,6 @@ export const Outfit: FunctionComponent = () => {
                 </IonCol>
                 */}
             </IonRow>
-
         </IonGrid>
-
-    )
-}
+    );
+};
