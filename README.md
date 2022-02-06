@@ -31,6 +31,7 @@ Install dependencies:
 ```
 yarn
 ```
+Ask one of the team members for the `.env` file and place it inside the `client` directory.
 Run the app:
 ```
 yarn start

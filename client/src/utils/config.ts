@@ -1,23 +1,23 @@
 export const config = {
   api: {
-    baseUrl: "http://flogreenie.pythonanywhere.com/api",
+    baseUrl: process.env.REACT_APP_API_BASEURL,
   },
   weatherapi: {
-    baseUrl: "https://api.weatherapi.com/v1/current.json",
-    apiKey: "f93eb660b2424258bf5155016210712",
+    baseUrl: process.env.REACT_APP_WEATHERAPI_BASEURL,
+    apiKey: process.env.REACT_APP_WEATHERAPI_APIKEY,
   },
   firebase: {
     config: {
-      apiKey: "AIzaSyDCqO6LABuFGFH73SlY_11d4X9PCi1Xy9k",
-      authDomain: "commfy-dev.firebaseapp.com",
-      projectId: "commfy-dev",
-      storageBucket: "commfy-dev.appspot.com",
-      messagingSenderId: "640480368018",
-      appId: "1:640480368018:web:afb596db7728c69e421d4b",
-      measurementId: "G-EC9HZG4W8M",
+      apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
+      authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+      projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+      storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+      messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID,
+      appId: process.env.REACT_APP_FIREBASE_APPID,
+      measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
     },
   },
   functions: {
-    baseUrl: "http://localhost:5000/commfy-dev/us-central1",
-  }
+    baseUrl: process.env.REACT_APP_FUNCTIONS_BASEURL,
+  },
 };
