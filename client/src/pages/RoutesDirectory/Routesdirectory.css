@@ -1,0 +1,45 @@
+.modal-cancel-button {
+  --background: #fef8ec;
+  --color: #466a63;
+  font-weight: 400;
+  font-size: 1.1em;
+}
+
+.modal-add-button {
+  --background: #fef8ec;
+  --color: #466a63;
+  font-size: 1.1em;
+}
+
+ion-modal ion-label {
+  font-size: 0.9rem;
+}
+
+.item.sc-ion-label-ios-h,
+.item .sc-ion-label-ios-h {
+  font-size: 0.9rem;
+}
+
+.native-input.sc-ion-input-ios {
+  font-size: 0.9em;
+}
+
+.heavyIcon {
+  color: #000;
+}
+
+.normalIcon {
+  color: #000;
+}
+
+.easyIcon {
+  color: #000;
+}
+
+-heavyIcon[aria-selected="true"] {
+  --color: white;
+}
+
+ion-datetime {
+  --background: #466a63;
+}

@@ -25,6 +25,7 @@
     "firebase": "^9.6.1",
     "formik": "^2.2.9",
     "ionicons": "^5.4.0",
+    "jotai": "^1.5.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-query": "^3.34.7",

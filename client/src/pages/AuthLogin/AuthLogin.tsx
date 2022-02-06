@@ -16,9 +16,13 @@ import { personCircle } from "ionicons/icons";
 import { Formik, FormikConfig } from "formik";
 import { useAuthentication } from "utils/firebase";
 import { routes } from "utils/routes";
+import { useRedirect } from "utils/redirect";
+
+import "./AuthLogin.css";
 
 const AuthLogin: React.FC = () => {
   const { signIn } = useAuthentication();
+  const { redirect } = useRedirect();
 
   // const username = "matheus@gmail.com";
   // const pass = "12345678";
@@ -30,6 +34,7 @@ const AuthLogin: React.FC = () => {
     const user = await signIn(values.email, values.password);
     console.log("user", user);
     setSubmitting(false);
+    redirect(routes.home);
   };
 
   return (
@@ -65,14 +70,10 @@ const AuthLogin: React.FC = () => {
                     />
                   </IonCol>
                 </IonRow> */}
-                <IonRow>
-                  <IonCol>
-                    <IonIcon
-                      style={{ fontSize: "70px", color: "#0040ff" }}
-                      icon={personCircle}
-                    />
-                  </IonCol>
-                </IonRow>
+                <h1>Let's log you in.</h1>
+                <p>
+                  Welcome back. <br></br>You have been missed!
+                </p>
                 <IonRow>
                   <IonCol>
                     <IonItem>
@@ -102,14 +103,15 @@ const AuthLogin: React.FC = () => {
                 </IonRow>
                 <IonRow>
                   <IonCol>
-                    <p style={{ fontSize: "small" }}>
+                    <p className="login-info-above">
                       By clicking LOGIN you agree to our <a href="#">Policy</a>
                     </p>
                     <IonButton type="submit" expand="block">
                       Login
                     </IonButton>
-                    <p style={{ fontSize: "medium" }}>
-                      Don't have an account? <a href={`/${routes.auth.register}`}>Sign up!</a>
+                    <p className="login-info-below">
+                      Don't have an account?{" "}
+                      <a href={`/${routes.auth.register}`}>Sign up!</a>
                     </p>
                   </IonCol>
                 </IonRow>

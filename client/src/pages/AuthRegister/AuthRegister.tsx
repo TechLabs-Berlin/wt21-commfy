@@ -8,32 +8,45 @@ import {
   IonLabel,
   IonInput,
   IonButton,
-  IonIcon,
+  IonSegment,
+  IonSegmentButton,
+  IonLoading,
+  IonGrid,
+  IonRow,
+  IonCol
 } from "@ionic/react";
-import React, { useState } from "react";
-import { IonGrid, IonRow, IonCol } from "@ionic/react";
-import { personCircle } from "ionicons/icons";
+import React from "react";
+import { useState } from "react";
 import { Formik, FormikConfig } from "formik";
 import { useAuthentication } from "utils/firebase";
 import { useRedirect } from "utils/redirect";
 import { routes } from "utils/routes";
+import { UserRegistrationPayload } from "types/User";
+
+import "./AuthRegister.css";
 
 const AuthRegister: React.FC = () => {
-  
+
+  const [showLoading, setShowLoading] = useState(false);
   const { signUp } = useAuthentication();
   const { redirect } = useRedirect();
-  const [gender, setGender] = useState("");
-  
 
 
-  const onSubmit: FormikConfig<any>["onSubmit"] = async (
+
+
+
+  const onSubmit: FormikConfig<UserRegistrationPayload>["onSubmit"] = async (
     values,
     { setSubmitting }
   ) => {
-    const newUser = await signUp(values.email, values.password, values.nickname, gender, values.personalWeatherTrend);
+    setShowLoading(true)
+    console.log("values", values);
+    const newUser = await signUp(values);
     console.log("newUser", newUser);
     setSubmitting(false);
-    redirect("/settings");
+    redirect(routes.home);
+    setShowLoading(false)
+
   };
 
   return (
@@ -46,7 +59,13 @@ const AuthRegister: React.FC = () => {
       <IonContent fullscreen className="ion-padding ion-text-center">
         <IonGrid>
           <Formik
-            initialValues={{ email: "", password: "", nickname: "", gender: "", personalWeatherTrend: 3 }}
+            initialValues={{
+              email: "",
+              password: "",
+              nickname: "",
+              gender: "d",
+              personalWeatherTrend: 0,
+            }}
             onSubmit={onSubmit}
           >
             {({
@@ -71,107 +90,97 @@ const AuthRegister: React.FC = () => {
                   </IonRow> */}
                 <IonRow>
                   <IonCol>
-                    <IonIcon
-                      style={{ fontSize: "70px", color: "#0040ff" }}
-                      icon={personCircle}
-                    />
-                  </IonCol>
-                </IonRow>
-                <IonRow>
-                  <IonCol>
-                    <IonItem>
+                    <IonItem className="item-email">
                       <IonLabel position="floating">Email</IonLabel>
                       <IonInput
                         type="email"
                         name="email"
                         value={values.email}
                         onIonInput={handleChange}
+                        required
                       ></IonInput>
                     </IonItem>
                   </IonCol>
                 </IonRow>
-                
 
                 <IonRow>
                   <IonCol>
-                    <IonItem>
+                    <IonItem className="item-nickname">
                       <IonLabel position="floating">Nickname</IonLabel>
                       <IonInput
                         type="text"
                         name="nickname"
                         value={values.nickname}
                         onIonInput={handleChange}
+                        className="nickname"
                       ></IonInput>
                     </IonItem>
                   </IonCol>
                 </IonRow>
+                <br></br>
+                <IonLabel className="sex-label">Sex</IonLabel>
 
-
-                <IonRow style={{ marginTop: "20px" }}>
-                  <IonCol>
-                    <IonLabel position="floating">Sex</IonLabel>
-                    <br />
-                    <div className="radio">
-                      <label>
-                        <input type="radio" value={gender} name="gender" onInput={handleChange} onClick={() => setGender("female")} />
-                        Woman
-                      </label>
-                    </div>
-                    <div className="radio">
-                      <label>
-                        <input type="radio" value={gender} name="gender" onInput={handleChange} onClick={() => setGender("other")} />
-                        Third
-                      </label>
-                    </div>
-                    <div className="radio">
-                      <label>
-                        <input type="radio" value={gender} name="gender" onInput={handleChange} onClick={() => setGender("male")} />
-                        Male
-                      </label>
-                    </div>
-                  </IonCol>
-                </IonRow>
-
-
-                <IonRow style={{ marginTop: "20px" }}>
-                  <IonCol>
-                    <IonLabel position="floating" >While I bike I tend to:</IonLabel>
+                <IonSegment onIonChange={handleChange} id="gender">
+                  <IonSegmentButton value={"m"}>
+                    <IonLabel>Male</IonLabel>
+                  </IonSegmentButton>
+                  <IonSegmentButton value={"d"}>
+                    <IonLabel>Other</IonLabel>
+                  </IonSegmentButton>
+                  <IonSegmentButton value={"f"}>
+                    <IonLabel>Female</IonLabel>
+                  </IonSegmentButton>
+                </IonSegment>
+                <br></br>
+                <IonRow>
+                  <IonCol className="sensitivity-register">
+                    <IonLabel position="floating">
+                      While I bike I tend to:
+                    </IonLabel>
                     <div className="range">
-                      <input type="range" min="1" max="5" className="slider" value={values.personalWeatherTrend} onChange={handleChange} name="personalWeatherTrend" />
+                      <input
+                        type="range"
+                        min="-5"
+                        max="5"
+                        className="slider"
+                        value={values.personalWeatherTrend}
+                        onChange={handleChange}
+                        name="personalWeatherTrend"
+                        required
+                      />
                       <div className="sliderticks">
-                        <span>sweat</span>
-                        <span>feel fine</span>
                         <span>freeze</span>
+                        <span>feel fine</span>
+                        <span>sweat</span>
                       </div>
                     </div>
                   </IonCol>
                 </IonRow>
 
-
                 <IonRow>
                   <IonCol>
-                    <IonItem>
+                    <IonItem className="item-password">
                       <IonLabel position="floating">Password</IonLabel>
                       <IonInput
                         type="password"
                         name="password"
                         value={values.password}
                         onIonInput={handleChange}
+                        required
                       ></IonInput>
                     </IonItem>
                   </IonCol>
                 </IonRow>
 
-
                 <IonRow>
                   <IonCol>
-                    <p style={{ fontSize: "small" }}>
+                    <p className="signup-info-above">
                       By signing up you agree to our <a href="#">Policy</a>
                     </p>
                     <IonButton type="submit" expand="block">
                       Register
                     </IonButton>
-                    <p style={{ fontSize: "medium" }}>
+                    <p className="signup-info-below">
                       Already have an account?{" "}
                       <a href={`/${routes.auth.login}`}>Log In!</a>
                     </p>
@@ -182,6 +191,14 @@ const AuthRegister: React.FC = () => {
           </Formik>
         </IonGrid>
       </IonContent>
+      <IonLoading
+        cssClass='my-custom-class'
+        isOpen={showLoading}
+        onDidDismiss={() => setShowLoading(false)}
+        message={"Registering..."}
+        duration={7000}
+        spinner="crescent"
+      />
     </IonPage>
   );
 };

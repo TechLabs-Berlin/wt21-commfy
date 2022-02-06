@@ -1,0 +1,35 @@
+ion-item.item-email {
+  --padding-start: 0;
+}
+
+ion-item.item-nickname {
+  --padding-start: 0;
+}
+
+ion-item.item-password {
+  --padding-start: 0;
+}
+
+.sensitivity-register {
+  margin: 0 1em;
+}
+
+.sex-label {
+  position: floating;
+}
+
+ion-grid {
+  padding-top: 0;
+}
+
+.signup-info-above {
+  font-size: 0.9em;
+}
+
+.signup-info-below {
+  font-size: 1em;
+}
+
+.sliderticks {
+  font-size: 0.8em;
+}
