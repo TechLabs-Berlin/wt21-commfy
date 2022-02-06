@@ -17,11 +17,11 @@ _Commfy_ is a digital product that fundamentally changes how bike commuters make
 <br><br>Are you interested in our UX-Team´s work? You can find all the _UX content_ in the _Docs folder_.
  
 ## Getting Started / Installation
-Requirements: Node.js, version 12
- 
+***Requirements:*** Node.js, version 12<br><br>
 Clone the repository:
+```
 git clone https://github.com/TechLabs-Berlin/wt21-commfy.git
- 
+```
 ### Frontend:
 Navigate to /client directory:
 ```
