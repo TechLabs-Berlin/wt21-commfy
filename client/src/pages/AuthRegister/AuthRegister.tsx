@@ -65,6 +65,7 @@ const AuthRegister: React.FC = () => {
               nickname: "",
               gender: "d",
               personalWeatherTrend: 0,
+              NO_ID_FIELD: ""
             }}
             onSubmit={onSubmit}
           >
