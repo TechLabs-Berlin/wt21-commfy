@@ -49,5 +49,5 @@ export const Weather: FunctionComponent = () => {
         </IonContent>
       </IonItem>
     );
-  }
+  };
 };

@@ -7,8 +7,8 @@ export const clothesConfig = {
         4: "cap"
     },
     sunglasses: {
-        0: "sunglases",
-        1: "sunglases"
+        0: "none",
+        1: "sunglases" // typo because of unrefined API output values and icon names.
     },
     neck: {
         1: "none",
@@ -49,15 +49,16 @@ export const clothesConfig = {
     },
     socks: {
         1: "socks",
-        2: "warmsocks",
+        2: "warmsocks", //duplicates because of unrefined API output values
         3: "warmsocks"
     },
     shoes: {
         1: "lowshoes",
         2: "boots",
-        3: "rainproofshoes"
+        3: "rainproofshoes", //duplicates because of unrefined API output values
+        4: "rainproofshoes"
     }
-}
+};
 
 export const backpackConfig = {
 
@@ -124,6 +125,6 @@ export const backpackConfig = {
             3: "rainproofshoes"
         }
     }
-}
+};
 
 

@@ -16,7 +16,7 @@ _Commfy_ is a digital product that fundamentally changes how bike commuters make
 ![product picture](./README_picture.png)
 <br><br>Are you interested in our UX-Team´s work? You can find all the _UX content_ in the _Docs folder_.
  
-Getting Started / Installation
+##Getting Started / Installation
 Requirements: Node.js, version 12
  
 Clone the repository:
