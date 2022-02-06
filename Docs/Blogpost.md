@@ -165,7 +165,7 @@ max_features = ['auto', 'sqrt'], max_depth = [int(x) for x in np.linspace(10, 12
 The best performing set of hyper-parameters among all we tried are: n_estimators=100, min_samples_split=6, min_samples_leaf=3, max_features='auto', max_depth=30, bootstrap= False
 ```
 ***Evaluation:***<br>
-As the next step, the final evaluation result will include a comparison of multiclass prediction accuracy for each algorithm based on cross validation (forthcoming).<br><br>
+ “In the next step, we plotted the chart comparing accuracy scores of classifiers.<br><br>
 
 ![The Accuracy Score by Classifier](./accuracy.png)
 ###### _Accuracy Score by Classifier_<br><br>
