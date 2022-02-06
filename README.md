@@ -58,14 +58,33 @@ firebase serve
 ```
 The App is optimized for iOS / iPhone 12 Pro (Simulation of mobile version on Chrome: Open DevTools by pressing F12 > Choose iPhone 12 Pro in the Toogle Device Toolbar).
  
-### Prerequisites for running Jupyter Notebooks
-Zsh/Bash → install packages & versions with pip install requirements.txt
-(have the requirements.txt in your working directory) 
-Create an account with https://openweathermap.org and get your api key
-Create a config.py in the working directory with api_key = ' your_api_key'
-
-### Flask API Deployment on PythonAnywhere
-Create an account on pythonanywhere
-Create a directory with flask_api.py
-Open a bash console on pythonanywhere
-    pip install requirements.txt 
+### Rule-based model jupyter notebook:
+* navigate to recommendation_API/rule-based_model
+* open zsh/bash → pip install requirements.txt
+* create an account with https://openweathermap.org and get your api key
+* create python file with api = ‘your api’ and  name it as ‘congif.py’
+* save in the root directory
+### Flask API deployment on PythonAnywhere:
+* convert notebook into a python file and name it as ‘Commfy_RBM’
+* import Commfy_RBM as rbm
+* create an account on pythonanywhere
+* upload the ‘Commfy_RBM.py’, ‘Flask_api.py’ and ‘requirements.txt’ into the working directory
+* open a bash console on pythonanywhere
+* pip install requirements.txt 
+* configure WSGI configuration to serve up the web application at http://<your-username>.pythonanywhere.com/
+* set the variable ‘application’ to a WSGI handler - ‘Flask_api’ for this project
+* add your project directory on pythonanywhere to the sys.path 
+* reload the web application (http://<your-username>.pythonanywhere.com/)
+### Machine learning notebook
+* navigate to recommendation_API/ML_notebook
+* open zsh/bash → pip install requirements.txt
+* run the multiclass_classification_feet.ipynb
+### Data Science toolkit:
+* Python (scikit, pandas, numpy, request, datetime, pytz. matplotlib, seaborn) - programming
+* CLI - mean of interaction
+* Git & GitHub - version control
+* Requirements.txt & virtual environment -  dependency management and isolation
+* Jupyter Notebook - human-readable documents with executable codes
+* VS.Code - integrated development environment
+* Flask App - API
+* Cloud Server: PythonAnywhere
